@@ -169,7 +169,7 @@
                                     </form>
                                 </div>
                             </div>
-                            <div class="tab-pane {{ $tab == 'social_links' ? 'show active' : '' }}" id="social_links"
+                            {{-- <div class="tab-pane {{ $tab == 'social_links' ? 'show active' : '' }}" id="social_links"
                                 role="tabpanel">
                                 <div class="pd-20 profile-task-wrap">
                                     <form action="post" wire:submit.prevent="updateSocialLinks()">
@@ -218,7 +218,7 @@
                                         <button type="submit" class="btn btn-primary">Update</button>
                                     </form>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

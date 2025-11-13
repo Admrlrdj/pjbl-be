@@ -23,6 +23,10 @@
     <link rel="stylesheet" href="/extra-assets/ijabo/css/ijabo.min.css" />
     <link rel="stylesheet" type="text/css" href="/back/vendors/styles/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="/extra-assets/jquery-ui-1.14.1/jquery-ui.min.css" />
+    <link rel="stylesheet" href="/extra-assets/jquery-ui-1.14.1/jquery-ui.structure.min.css" />
+    <link rel="stylesheet" href="/extra-assets/jquery-ui-1.14.1/jquery-ui.theme.min.css" />
     @kropifyStyles
     @stack('stylesheets')
 </head>
@@ -90,8 +94,8 @@
                                 class="ion-minus-round"></i></label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebariconlist-2" name="menu-list-icon" class="custom-control-input"
-                            value="icon-list-style-2" />
+                        <input type="radio" id="sidebariconlist-2" name="menu-list-icon"
+                            class="custom-control-input" value="icon-list-style-2" />
                         <label class="custom-control-label" for="sidebariconlist-2"><i class="fa fa-circle-o"
                                 aria-hidden="true"></i></label>
                     </div>
@@ -215,6 +219,8 @@
     <script src="/back/vendors/scripts/layout-settings.js"></script>
     <script src="/extra-assets/ijabo/js/ijabo.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script src="/extra-assets/jquery-ui-1.14.1/jquery-ui.min.js"></script>
     @kropifyScripts
     <script>
         window.addEventListener('showToastr', function(event) {
