@@ -180,8 +180,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="" class="dropdown-toggle no-arrow">
-                            <span class="micon bi bi-map"></span><span class="mtext">Lokasi</span>
+                        <a href="{{ route('admin.locations') }}" class="dropdown-toggle no-arrow">
+                            <span class="micon bi bi-map"></span><span class="mtext">Locations</span>
                             {{-- <i class="icon-copy bi bi-map"></i> --}}
                         </a>
                     </li>

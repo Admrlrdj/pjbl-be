@@ -149,4 +149,12 @@ class AdminController extends Controller
         ];
         return view('back.pages.contact_us_page', $data);
     }
+
+    public function locationsPage(Request $request)
+    {
+        $data = [
+            'pageTitle' => 'Locations'
+        ];
+        return view('back.pages.locations_page', $data);
+    }
 }

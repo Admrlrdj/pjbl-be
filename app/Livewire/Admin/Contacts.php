@@ -28,7 +28,7 @@ class Contacts extends Component
     public function render()
     {
         return view('livewire.admin.contacts', [
-            'contacts' => ContactUs::orderBy('name', 'asc')->get(),
+            'contacts' => ContactUs::orderBy('id', 'asc')->get(),
         ]);
     }
 }

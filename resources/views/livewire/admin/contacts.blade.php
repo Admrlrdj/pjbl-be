@@ -21,7 +21,7 @@
                         </thead>
                         <tbody id="sortable_categories">
                             @forelse ($contacts as $item)
-                                <tr data-index="{{ $item->id }}" data-ordering="{{ $item->ordering }}">
+                                <tr>
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
