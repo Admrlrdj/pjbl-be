@@ -133,4 +133,20 @@ class AdminController extends Controller
         ];
         return view('back.pages.categories_page', $data);
     }
+
+    public function productsPage(Request $request)
+    {
+        $data = [
+            'pageTitle' => 'Products'
+        ];
+        return view('back.pages.products_page', $data);
+    }
+
+    public function contactUsPage(Request $request)
+    {
+        $data = [
+            'pageTitle' => 'Contact Us'
+        ];
+        return view('back.pages.contact_us_page', $data);
+    }
 }

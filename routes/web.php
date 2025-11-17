@@ -32,6 +32,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::post('/update-logo', 'updateLogo')->name('update_logo');
             Route::post('/update-favicon', 'updateFavicon')->name('update_favicon');
             Route::get("/categories", 'categoriesPage')->name("categories");
+            Route::get('/products', 'productsPage')->name('products');
+            Route::get('/contact-us', 'contactUsPage')->name('contact_us');
         });
     });
 });

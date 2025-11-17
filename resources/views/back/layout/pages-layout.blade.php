@@ -156,26 +156,26 @@
                         </a>
                     </li>
                     <li>
-                        <a href="" class="dropdown-toggle no-arrow">
-                            <span class="micon bi bi-box-seam"></span><span class="mtext">Produk</span>
+                        <a href="{{ route('admin.products') }}" class="dropdown-toggle no-arrow">
+                            <span class="micon bi bi-box-seam"></span><span class="mtext">Products</span>
                             {{-- <i class="icon-copy bi bi-box-seam"></i> --}}
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('admin.categories') }}" class="dropdown-toggle no-arrow">
-                            <span class="micon bi bi-grid"></span><span class="mtext">Kategori</span>
+                            <span class="micon bi bi-grid"></span><span class="mtext">Categories</span>
                             {{-- <i class="icon-copy bi bi-grid"></i> --}}
                         </a>
                     </li>
                     <li>
                         <a href="" class="dropdown-toggle no-arrow">
-                            <span class="micon bi bi-person"></span><span class="mtext">Testimoni</span>
+                            <span class="micon bi bi-person"></span><span class="mtext">Testimonials</span>
                             {{-- <i class="icon-copy bi bi-person"></i> --}}
                         </a>
                     </li>
                     <li>
-                        <a href="" class="dropdown-toggle no-arrow">
-                            <span class="micon bi bi-chat-right-dots"></span><span class="mtext">Kontak</span>
+                        <a href="{{ route('admin.contact_us') }}" class="dropdown-toggle no-arrow">
+                            <span class="micon bi bi-chat-right-dots"></span><span class="mtext">Contacts</span>
                             {{-- <i class="icon-copy bi bi-chat-right-dots"></i> --}}
                         </a>
                     </li>

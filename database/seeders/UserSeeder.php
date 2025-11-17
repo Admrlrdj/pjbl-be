@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'name' => 'Owner',
             'username' => 'owner',
             'email' => 'owner@email.com',
-            'password' => Hash::make('12345'),
+            'password' => Hash::make('11111'),
             'type' => UserType::Owner,
         ]);
     }

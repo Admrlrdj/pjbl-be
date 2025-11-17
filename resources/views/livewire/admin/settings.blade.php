@@ -87,7 +87,7 @@
                                     <input type="file" name="site_logo" id="" class="form-control">
                                     <span class="text-danger ml-1"></span>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Change Logo</button>
+                                <button type="submit" class="btn btn-warning">Change Logo</button>
                             </form>
                         </div>
                         <div class="col-md-6">
@@ -103,7 +103,7 @@
                                     <input type="file" name="site_favicon" id="" class="form-control">
                                     <span class="text-danger ml-1"></span>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Change Favicon</button>
+                                <button type="submit" class="btn btn-warning">Change Favicon</button>
                             </form>
                         </div>
                     </div>

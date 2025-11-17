@@ -60,8 +60,8 @@
 
                 if (data.status == 1) {
                     toastr.success(data.message);
-                    Livewire.dispatch('updateTopUserInfo', []);
-                    Livewire.dispatch('updateProfile', []);
+                    // Livewire.dispatch('updateTopUserInfo', []);
+                    // Livewire.dispatch('updateProfile', []);
                 } else {
                     toastr.error(data.message);
                 }
