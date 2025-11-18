@@ -186,7 +186,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="" class="dropdown-toggle no-arrow">
+                        <a href="{{ route('admin.faqs') }}" class="dropdown-toggle no-arrow">
                             <span class="micon bi bi-question-circle"></span><span class="mtext">FAQ</span>
                             {{-- <i class="icon-copy bi bi-question-circle"></i> --}}
                         </a>

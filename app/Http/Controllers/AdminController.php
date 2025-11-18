@@ -157,4 +157,12 @@ class AdminController extends Controller
         ];
         return view('back.pages.locations_page', $data);
     }
+
+    public function faqsPage(Request $request)
+    {
+        $data = [
+            'pageTitle' => 'FAQs'
+        ];
+        return view('back.pages.faqs_page', $data);
+    }
 }

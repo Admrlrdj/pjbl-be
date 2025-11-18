@@ -35,6 +35,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/products', 'productsPage')->name('products');
             Route::get('/contact-us', 'contactUsPage')->name('contact_us');
             Route::get('/locations', 'locationsPage')->name('locations');
+            Route::get('/faqs', 'faqsPage')->name('faqs');
         });
     });
 });
