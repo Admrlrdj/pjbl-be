@@ -28,7 +28,7 @@ class FAQs extends Component
     public function createFAQ()
     {
         $this->validate([
-            'question' => 'required|unique:faqs,name',
+            'question' => 'required|unique:f_a_q_s,question',
             'answer' => 'required',
 
         ], [
@@ -39,6 +39,7 @@ class FAQs extends Component
 
         $faq = new FAQ();
         $faq->question = $this->question;
+        $faq->answer = $this->answer;
         $saved = $faq->save();
 
         if ($saved) {
@@ -62,10 +63,10 @@ class FAQs extends Component
 
     public function updateFAQ()
     {
-        $faq = FAQ::findOrFail($this->faq);
+        $faq = FAQ::findOrFail($this->faq_id);
 
         $this->validate([
-            'question' => 'required|unique:faqs,name,' . $this->faq_id,
+            'question' => 'required|unique:f_a_q_s,question,' . $this->faq_id,
             'answer' => 'required',
 
         ], [

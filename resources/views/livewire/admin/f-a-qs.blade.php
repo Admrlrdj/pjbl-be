@@ -1,4 +1,5 @@
 <div>
+    @livewire('admin.consoles')
     <div class="row">
         <div class="col-12">
             <div class="pd-20 card-box mb-30">
@@ -22,8 +23,8 @@
                             @forelse ($faqs as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->questions }}</td>
-                                    <td>{{ $item->answers }}</td>
+                                    <td>{{ $item->question }}</td>
+                                    <td>{{ $item->answer }}</td>
                                     <td>
                                         <div class="table-actions">
                                             <a href="javascript:;" wire:click="editFAQ({{ $item->id }})"

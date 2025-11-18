@@ -1,4 +1,5 @@
 <div>
+    @livewire('admin.consoles')
     <div class="row">
         <div class="col-12">
             <div class="pd-20 card-box mb-30">

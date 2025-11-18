@@ -1,5 +1,21 @@
 @extends('back.layout.pages-layout')
 @section('pageTitle', isset($pageTitle) ? $pageTitle : 'Page Title Here')
 @section('content')
-    Example Page
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="title">
+                    <h4>Home</h4>
+                </div>
+                <nav aria-label="breadcrumb" role="navigation">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Home
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    @livewire('admin.consoles')
 @endsection

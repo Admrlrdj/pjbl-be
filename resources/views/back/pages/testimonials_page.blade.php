@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12 col-sm-12">
                 <div class="title">
-                    <h4>Products</h4>
+                    <h4>Testimonials</h4>
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
@@ -13,26 +13,26 @@
                             <a href="{{ route('admin.dashboard') }}">Home</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Products
+                            Testimonials
                         </li>
                     </ol>
                 </nav>
             </div>
         </div>
     </div>
-    @livewire('admin.products')
+    @livewire('admin.testimonials')
 @endsection
 @push('scripts')
     <script>
-        window.addEventListener('showProductModalForm', function() {
-            $('#product_modal').modal('show');
+        window.addEventListener('showTestimonialModalForm', function() {
+            $('#testimonial_modal').modal('show');
         });
 
-        window.addEventListener('hideProductModalForm', function() {
-            $('#product_modal').modal('hide');
+        window.addEventListener('hideTestimonialModalForm', function() {
+            $('#testimonial_modal').modal('hide');
         });
 
-        window.addEventListener('deleteProduct', function(event) {
+        window.addEventListener('deleteTestimonial', function(event) {
             var id = event.detail[0].id;
             Swal.fire({
                 title: 'Are you sure?',
@@ -49,7 +49,7 @@
                 }
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Livewire.dispatch('deleteProductAction', {
+                    Livewire.dispatch('deleteTestimonialAction', {
                         id: id
                     });
                 }

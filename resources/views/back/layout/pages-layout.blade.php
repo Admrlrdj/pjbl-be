@@ -168,7 +168,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="" class="dropdown-toggle no-arrow">
+                        <a href="{{ route('admin.testimonials') }}" class="dropdown-toggle no-arrow">
                             <span class="micon bi bi-person"></span><span class="mtext">Testimonials</span>
                             {{-- <i class="icon-copy bi bi-person"></i> --}}
                         </a>

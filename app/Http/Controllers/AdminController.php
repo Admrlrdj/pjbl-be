@@ -165,4 +165,12 @@ class AdminController extends Controller
         ];
         return view('back.pages.faqs_page', $data);
     }
+
+    public function testimonialsPage(Request $request)
+    {
+        $data = [
+            'pageTitle' => 'Testimonials'
+        ];
+        return view('back.pages.testimonials_page', $data);
+    }
 }
