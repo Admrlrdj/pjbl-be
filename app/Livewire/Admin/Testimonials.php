@@ -62,6 +62,7 @@ class Testimonials extends Component
         $testimonial->name = $this->testimonial_name;
         $testimonial->rating = $this->testimonial_rating;
         $testimonial->comment = $this->testimonial_comment;
+        
 
         if ($this->image) {
             $path = public_path('images/testimonials/');
@@ -200,5 +201,11 @@ class Testimonials extends Component
         return view('livewire.admin.testimonials', [
             'testimonials' => Testimonial::orderBy('id', 'asc')->get(),
         ]);
+        $testimonials = Testimonial::orderBy('id', 'asc')
+        ->take(3)
+        ->get();
+        return view('home', compact('testimonials'));
     }
+
+    
 }

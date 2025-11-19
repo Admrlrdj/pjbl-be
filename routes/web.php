@@ -20,6 +20,8 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/products', [HomeController::class, 'allProducts'])->name('products.all');
 Route::get('/products/{slug}', [HomeController::class, 'productDetail'])->name('product.detail');
 Route::get('/category/{slug}', [HomeController::class, 'productsByCategory'])->name('products.category');
+Route::get('/search', [HomeController::class, 'searchProducts'])->name('products.search');
+
 
 // Development Routes
 Route::view('/example-page', 'example-page');

@@ -145,220 +145,363 @@
 </section>
 
 <!-- Product Catalog Section -->
-<section class="py-16 bg-white">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-gray-800 mb-8">Katalog Produk</h2>
-            
-            <!-- Category Filter -->
-            <div class="flex flex-wrap justify-center gap-4 mb-8">
-                <a href="{{ route('products.all') }}" 
-                   class="bg-primary text-white px-6 py-2 rounded-full font-semibold hover:bg-yellow-600 transition">
-                    <i class="fas fa-th mr-2"></i> Semua Produk
-                </a>
-                @foreach($categories as $category)
-                <a href="{{ route('products.category', $category['slug']) }}" 
-                   class="bg-white border-2 border-gray-300 text-gray-700 px-6 py-2 rounded-full font-semibold hover:border-primary hover:text-primary transition">
-                    <i class="fas fa-cookie mr-2"></i> {{ $category['name'] }} ({{ $category['product_count'] }})
-                </a>
-                @endforeach
-            </div>
-            
-            <!-- Search Bar -->
-            <div class="max-w-md mx-auto">
-                <form action="{{ route('products.all') }}" method="GET">
-                    <div class="relative">
-                        <input type="text" 
-                               name="search" 
-                               placeholder="Cari produk..." 
-                               class="w-full border-2 border-gray-300 rounded-full px-6 py-3 pr-12 focus:outline-none focus:border-primary">
-                        <button type="submit" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary text-white w-10 h-10 rounded-full hover:bg-yellow-600 transition">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        
-        <!-- Product Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-8">
-            @foreach($products->take(6) as $product)
-            <div class="bg-white border-2 border-yellow-300 rounded-2xl overflow-hidden hover-scale shadow-lg">
-                <div class="grid grid-cols-2 gap-4 p-4">
-                    <a href="{{ route('product.detail', $product['slug']) }}">
-                        <img src="{{ $product['image'] }}" 
-                             alt="{{ $product['name'] }}" 
-                             class="w-full h-40 object-cover rounded-xl">
-                    </a>
-                    <div class="flex flex-col justify-between">
-                        <div>
-                            <span class="inline-block bg-yellow-100 text-primary text-xs font-semibold px-2 py-1 rounded-full mb-2">
-                                {{ $product['category'] }}
-                            </span>
-                            <h3 class="font-bold text-lg text-gray-800 mb-1">{{ $product['name'] }}</h3>
-                            <p class="text-gray-500 text-xs mb-1">{{ $product['size'] }}</p>
-                            <p class="text-gray-600 text-sm mb-2">{{ $product['description'] }}</p>
-                            <span class="text-xl font-bold text-primary">{{ $product['price'] }}</span>
-                        </div>
-                        <div class="flex gap-2 mt-4">
-                            <a href="https://wa.me/6281936810305?text=Halo, saya ingin memesan {{ $product['name'] }}" 
-                               target="_blank"
-                               class="flex-1 bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold text-center hover:bg-yellow-600 transition">
-                               Beli
-                            </a>
-                            <a href="{{ route('product.detail', $product['slug']) }}" 
-                               class="flex-1 border-2 border-primary text-primary px-4 py-2 rounded-full text-sm font-semibold text-center hover:bg-primary hover:text-white transition">
-                               Detail
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-        
-        <!-- Load More Button -->
-        <div class="text-center">
-            <a href="{{ route('products.all') }}" 
-               class="inline-block bg-white border-2 border-primary text-primary px-8 py-3 rounded-full font-semibold hover:bg-primary hover:text-white transition">
-                Lihat Semua Produk
+<div class="flex items-center justify-between gap-4 overflow-x-auto pb-3">
+
+    <!-- Kategori List -->
+    <div class="flex gap-4 flex-nowrap">
+        <!-- Semua Produk (Active) -->
+        <a href="{{ route('products.all') }}"
+           class="
+               flex items-center justify-center
+               px-[34px] py-[18px]
+               rounded-[50px]
+               border-[2px] border-[#FFD700]
+               bg-white
+               shadow-inner shadow-[inset_5px_8px_6px_rgba(0,0,0,0.30)]
+               font-semibold text-[#2C2C2C] whitespace-nowrap
+           ">
+            <i class="fas fa-th mr-2"></i> Semua Produk
+        </a>
+
+        <!-- Dynamic Categories -->
+        @foreach($categories as $category)
+            <a href="{{ route('products.category', $category['slug']) }}"
+               class="
+                   flex items-center justify-center
+                   px-[34px] py-[18px]
+                   rounded-[50px] whitespace-nowrap
+                   font-semibold text-[#2C2C2C]
+                   transition
+                   @if(request()->routeIs('products.category') && request()->route('slug') === $category['slug'])
+                       border-[2px] border-[#FFD700] bg-white shadow-inner shadow-[inset_5px_8px_6px_rgba(0,0,0,0.30)]
+                   @else
+                       shadow-[5px_5px_6px_rgba(0,0,0,0.25)]
+                   @endif
+               ">
+                <i class="fas fa-cookie mr-2"></i> {{ $category['name'] }}
             </a>
+        @endforeach
+    </div>
+
+    <!-- Search Bar -->
+    <form action="{{ route('products.all') }}" method="GET"
+          class="flex-shrink-0">
+        <div class="relative w-[225px] h-[59px]">
+            <input type="text"
+                   name="search"
+                   placeholder="Search here"
+                   class="
+                       w-full h-full
+                       rounded-[20px]
+                       border-[2px] border-[#FFD700]
+                       px-5 pr-12
+                       bg-white
+                       shadow-[0_4px_4px_rgba(0,0,0,0.25)]
+                       focus:outline-none
+                   ">
+            <button type="submit"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 text-[#2C2C2C]">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </form>
+
+</div>
+
+<div class="w-[1199px] h-[3px] bg-[#FFD700] mx-auto mb-8"></div>
+
+<!-- Product Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 justify-items-center mb-8">
+
+    @foreach($products->take(6) as $product)
+    <div class="w-[579px] h-[192px] bg-white border-[4px] border-[#FFD700] rounded-[24px] shadow-lg flex p-4 mt-3 mb-2">
+
+        <!-- Left: Image -->
+        <a href="{{ route('product.detail', $product['slug']) }}">
+            <img src="{{ $product['image'] }}"
+                 alt="{{ $product['name'] }}"
+                 class="w-[220px] h-[152px] object-cover rounded-[5px] shadow-md">
+        </a>
+
+        <!-- Right Content -->
+        <div class="flex flex-col justify-between ml-4 flex-grow">
+
+            <!-- Category → optional keep -->
+            <span class="  px-2 py-1l mb-1">
+              
+            </span>
+
+            <!-- Title -->
+            <h3 class="text-[#2C2C2C] font-[Poppins] font-semibold text-[20px] leading-[0] tracking-[-0.8px]">
+                {{ $product['name'] }}
+            </h3>
+
+            <!-- Size -->
+
+
+            <!-- Description -->
+            <p class="text-gray-600 text-[12px] mt-1">
+                {{ $product['description'] }}
+            </p>
+
+            <!-- Price -->
+            <span class="text-[#FB9E3A] font-[Poppins] text-[20px] font-bold">
+                {{ $product['price'] }}
+            </span>
+
+            <!-- Buttons (20px gap) -->
+            <div class="flex gap-[20px] mt-2">
+
+                <!-- BUY -->
+                <a href="https://wa.me/6281936810305?text=Halo, saya ingin memesan {{ $product['name'] }}"
+                   target="_blank"
+                   class="w-[100px] h-[40px] flex items-center justify-center
+                          border-2 border-[#FFD700] rounded-[12px]
+                          bg-white font-semibold text-primary text-[14px]
+                          hover:bg-[#FFD700] hover:text-white transition">
+                    Beli
+                </a>
+
+               
+                <a href="{{ route('product.detail', $product['slug']) }}"
+                   class="w-[100px] h-[40px] flex items-center justify-center
+                          border-2 border-[#FFD700] rounded-[12px]
+                          bg-white font-semibold text-primary text-[14px]
+                          hover:bg-[#FFD700] hover:text-white transition">
+                    Detail
+                </a>
+
+            </div>
         </div>
     </div>
-</section>
+    @endforeach
+
+</div>
+
+<!-- Load More -->
+<div class="text-center mt-6">
+    <a href="{{ route('products.all') }}"
+       class="inline-block bg-[FFD700] border-2 border-primary text-primary px-8 py-3 rounded-full font-semibold hover:bg-primary">
+        Lihat Semua Produk
+    </a>
+</div>
 
 <!-- Testimonial Section -->
-<section class="py-16 bg-gradient-to-br from-yellow-50 to-white">
+<section class="py-20 bg-white">
     <div class="container mx-auto px-4">
+
         <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-gray-800 mb-2">Testimoni</h2>
-            <p class="text-gray-600">Apa kata mereka tentang produk kami???</p>
+            <h2 class="text-3xl font-bold text-gray-800">Testimoni Pelanggan</h2>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            @foreach($testimonials as $index => $testimonial)
-            <div class="bg-{{ $index === 1 ? 'primary' : 'white' }} rounded-2xl p-8 shadow-lg hover-scale {{ $index === 1 ? 'transform scale-105' : '' }}">
-                <div class="text-4xl mb-4 {{ $index === 1 ? 'text-white' : 'text-primary' }}">"</div>
-                <p class="text-sm {{ $index === 1 ? 'text-white' : 'text-gray-700' }} mb-6 italic">{{ $testimonial['message'] }}</p>
-                
-                <div class="flex items-center justify-center mb-4">
-                    <img src="{{ asset('images/avatars/' . $testimonial['avatar']) }}" 
-                         alt="{{ $testimonial['name'] }}" 
-                         class="w-16 h-16 rounded-full border-4 {{ $index === 1 ? 'border-white' : 'border-primary' }}" >
-                                          </div>
-                
-                <div class="text-center">
-                    <h4 class="font-bold {{ $index === 1 ? 'text-white' : 'text-gray-800' }}">{{ $testimonial['name'] }}</h4>
-                    <p class="text-sm {{ $index === 1 ? 'text-white' : 'text-gray-600' }}">{{ $testimonial['role'] }}</p>
-                    
-                    <div class="flex justify-center gap-1 mt-3">
-                        @for($i = 0; $i < $testimonial['rating']; $i++)
-                        <i class="fas fa-star {{ $index === 1 ? 'text-white' : 'text-yellow-400' }}"></i>
+
+        <div class="flex flex-col md:flex-row justify-center items-start gap-10">
+
+            @foreach($testimonials as $index => $t)
+
+                @php
+                    $isCenter = $index === 1; // box tengah
+                @endphp
+
+                <div class="
+                    relative flex flex-col items-center text-center px-6 pt-16 pb-10
+                    {{ $isCenter 
+                        ? 'w-[415px] h-[290px] bg-[#FB9E3A] mt-0 rounded-[20px] shadow-lg'
+                        : 'w-[368px] h-[290px] bg-white mt-10 rounded-[10px] shadow-[0_0_50px_rgba(0,0,0,0.20)]'
+                    }}
+                ">
+
+                    <!-- Quote Icon -->
+                    <img src="{{ asset('images/testimonials/quote.svg') }}"
+                        class="w-[50px] h-[50px] absolute -top-6 left-1/2 -translate-x-1/2"
+                        alt="Quote">
+
+                    <!-- Avatar -->
+                    <div class="absolute -bottom-10 left-1/2 -translate-x-1/2">
+                        <img src="{{ asset('images/testimonials/' . $t->image) }}"
+                            class="w-[70px] h-[70px] rounded-full border border-[#2C2C2C] object-cover">
+                    </div>
+
+                    <!-- Comment Text -->
+                    <p class="{{ $isCenter ? 'text-white' : 'text-[#2C2C2C]' }}
+                        text-[18px] leading-[30px] font-normal
+                        text-center mt-4 px-2
+                        h-[122px] overflow-hidden">
+                        {{ $t->comment }}
+                    </p>
+
+                    <!-- Rating Stars -->
+                    <div class="flex gap-1 mt-8"> <!-- dibuat lebih kebawah -->
+                        @for($i = 0; $i < $t->rating; $i++)
+                            <img src="{{ asset('images/testimonials/star.png') }}"
+                                class="w-[18px] h-[18px]">
                         @endfor
                     </div>
+
+                    <!-- Name -->
+                    <div class="mt-14">
+                        <p class="font-semibold text-[24px] leading-[34px] {{ $isCenter ? 'text-white' : 'text-[#2C2C2C]' }}">
+                            {{ $t->name }}
+                        </p>
+                    </div>
                 </div>
-            </div>
+
             @endforeach
+
         </div>
+
     </div>
 </section>
-
 <!-- Location Section -->
 <section class="py-16 bg-white">
     <div class="container mx-auto px-4">
         <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-gray-800 mb-2">Lokasi Kami</h2>
+            <h2 class="text-4xl font-bold text-gray-800 mb-3">Lokasi Kami</h2>
             <p class="text-gray-600">Kami Tunggu Kedatanganmu</p>
         </div>
         
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start max-w-7xl mx-auto">
             
             <!-- Contact Info -->
-            <div>
-                <h3 class="text-2xl font-bold text-gray-800 mb-6">Hubungi Kami</h3>
-                <div class="space-y-4">
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fab fa-whatsapp text-white text-xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-800">WhatsApp (Only)</h4>
-                            <a href="{{ $contact['whatsapp_url'] }}" target="_blank" class="text-primary hover:underline">
-                                {{ $contact['whatsapp'] }}
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-envelope text-white text-xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-800">Email</h4>
-                            <a href="mailto:{{ $contact['email'] }}" class="text-primary hover:underline">
-                                {{ $contact['email'] }}
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fab fa-instagram text-white text-xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-800">Instagram</h4>
-                            <a href="{{ $contact['instagram_url'] }}" target="_blank" class="text-primary hover:underline">
-                                {{ $contact['instagram'] }}
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-map-marker-alt text-white text-xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-800">Alamat Produksi</h4>
-                            <p class="text-gray-600 text-sm">{{ $contact['address'] }}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-building text-white text-xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-800">Table Office</h4>
-                            <p class="text-gray-600 text-sm">{{ $contact['table_office'] }}</p>
-                        </div>
-                    </div>
-                </div>
+           <div class="text-black"
+     style="
+        display: flex;
+        width: 544px;
+        padding-bottom: 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15.3px;
+     "
+>
+    <h3 class="text-2xl font-bold mb-2">Hubungi Kami</h3>
+
+    <div class="space-y-6 w-full">
+
+        <div class="flex items-start gap-4">
+            <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fab fa-whatsapp text-white text-lg"></i>
             </div>
-            
-            <!-- Map -->
-            <div class="relative">
-                <div class="bg-yellow-100 rounded-3xl p-4 shadow-lg">
-                    <div class="bg-white rounded-2xl overflow-hidden" style="height: 450px;">
-                        <iframe 
-                            src="{{ $contact['maps_embed'] }}"
-                            width="100%" 
-                            height="100%" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy">
-                        </iframe>
-                    </div>
-                    <div class="mt-4 text-center">
-                        <a href="{{ $contact['maps_url'] }}" 
-                           target="_blank"
-                           class="inline-block bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-yellow-600 transition shadow-lg">
-                            <i class="fas fa-directions mr-2"></i> Buka di Google Maps
-                        </a>
-                    </div>
-                </div>
+            <div>
+                <h4 class="font-semibold mb-1">WhatsApp (Only)</h4>
+                <a href="{{ $contact['whatsapp_url'] }}" target="_blank" class="text-yellow-300 hover:underline">
+                    {{ $contact['whatsapp'] }}
+                </a>
             </div>
         </div>
+
+        <div class="flex items-start gap-4">
+            <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-envelope text-white text-lg"></i>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-1">Email</h4>
+                <a href="mailto:{{ $contact['email'] }}" class="text-yellow-300 hover:underline break-all">
+                    {{ $contact['email'] }}
+                </a>
+            </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+            <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fab fa-instagram text-white text-lg"></i>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-1">Instagram</h4>
+                <a href="{{ $contact['instagram_url'] }}" target="_blank" class="text-yellow-300 hover:underline">
+                    {{ $contact['instagram'] }}
+                </a>
+            </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+            <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-map-marker-alt text-white text-lg"></i>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-1">Alamat Produksi</h4>
+                <p class="text-yellow text-sm">{{ $contact['alamat'] }}</p>
+            </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+            <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-building text-white text-lg"></i>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-1">Toko Offline</h4>
+                <p class="text-yellow text-sm">{{ $contact['toko_offline'] }}</p>
+                <p class="text-yellow text-xs mt-1">Buka setiap hari: 10.00 - 21.00 WIB</p>
+            </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+            <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-star text-white text-lg"></i>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-1">Belanja Online</h4>
+                <a href="https://shopee.com/Danggedang Official" target="_blank" class="text-yellow-300 hover:underline">
+                    Shopee: Danggedang Official
+                </a>
+            </div>
+        </div>
+
     </div>
+
+</div>
+
+            
+            <!-- Map -->
+        <div class="flex justify-center">
+    <div class="relative">
+
+        <!--FRAME -->
+        <div class="overflow-hidden"
+            style="
+                width: 473px;
+                height: 455px;
+                border-radius: 15px;
+                border: 3px solid #FFD700;
+                box-shadow: inset 8px 12px 10px rgba(0, 0, 0, 0.25);
+            "
+        >
+            <iframe 
+                src="{{ $contact['maps_embed'] }}"
+                width="100%" 
+                height="100%"
+                style="border:0; border-radius: 15px;"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+
+            
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2">
+                <a href="{{ $contact['maps_url'] }}" target="_blank"
+                    style="
+                        display: inline-flex;
+                        height: 73px;
+                        padding: 8.3px 24px 8.29px 24px;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 30px;
+                        border: 3px solid #FFD700;
+                        background: #FFF;
+                        box-shadow: 3px 5px 5px rgba(0,0,0,0.25);
+                        font-family: Poppins, sans-serif;
+                        font-size: 16px;
+                        font-weight: 700;
+                        color: #2C2C2C;
+                        line-height: 25.6px;
+                    "
+                >
+                    <i class="fas fa-map-marker-alt mr-2"></i>
+                    Buka di Google Maps
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 </section>
 
 @endsection
