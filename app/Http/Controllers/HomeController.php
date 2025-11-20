@@ -149,6 +149,8 @@ class HomeController extends Controller
 
     public function productDetail($slug)
     {
+        return view('product-detail');
+        
         // Produk detail tanpa images[]
         $product = Product::with('category')->where('slug', $slug)->firstOrFail();
 
