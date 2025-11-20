@@ -32,9 +32,9 @@
         }
         
         .border-primary {
-            border-color: #FDB913;
+            border-color: #FFD700;
         }
-        
+
         .hover-scale {
             transition: transform 0.3s ease;
         }
