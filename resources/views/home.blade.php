@@ -145,10 +145,10 @@
 </section>
 
 <!-- Product Catalog Section -->
-<div class="flex items-center justify-between gap-4 overflow-x-auto pb-3">
+<div class="flex items-start justify-between gap-4 overflow-x-auto pb-3">
 
     <!-- Kategori List -->
-    <div class="flex gap-4 flex-nowrap">
+    <div class="flex gap-4 flex-nowrap width-auto">
         <!-- Semua Produk (Active) -->
         <a href="{{ route('products.all') }}"
            class="
@@ -184,27 +184,30 @@
     </div>
 
     <!-- Search Bar -->
-    <form action="{{ route('products.all') }}" method="GET"
-          class="flex-shrink-0">
-        <div class="relative w-[225px] h-[59px]">
-            <input type="text"
-                   name="search"
-                   placeholder="Search here"
-                   class="
-                       w-full h-full
-                       rounded-[20px]
-                       border-[2px] border-[#FFD700]
-                       px-5 pr-12
-                       bg-white
-                       shadow-[0_4px_4px_rgba(0,0,0,0.25)]
-                       focus:outline-none
-                   ">
-            <button type="submit"
-                    class="absolute right-3 top-1/2 -translate-y-1/2 text-[#2C2C2C]">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-    </form>
+    <form action="{{ route('products.all') }}" method="GET" class="flex-shrink-0">
+    <div class="relative flex items-center w-[225px] h-[59px]
+                rounded-[20px] border-[2px] border-[#FFD700]
+                bg-white shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
+
+        <input type="text"
+            name="search"
+            placeholder="Search here"
+            class="
+                w-full h-full
+                px-5 pr-12
+                bg-transparent
+                focus:outline-none
+                rounded-[20px]
+            "
+        >
+
+        <!-- Search Icon -->
+        <button type="submit" class="absolute right-4 text-gray-600">
+            <i class="fas fa-search"></i>
+        </button>
+
+    </div>
+</form>
 
 </div>
 
@@ -237,8 +240,6 @@
             </h3>
 
             <!-- Size -->
-
-
             <!-- Description -->
             <p class="text-gray-600 text-[12px] mt-1">
                 {{ $product['description'] }}
@@ -257,7 +258,7 @@
                    target="_blank"
                    class="w-[100px] h-[40px] flex items-center justify-center
                           border-2 border-[#FFD700] rounded-[12px]
-                          bg-white font-semibold text-primary text-[14px]
+                          bg-white font-semibold text-black text-[14px]
                           hover:bg-[#FFD700] hover:text-white transition">
                     Beli
                 </a>
@@ -266,7 +267,7 @@
                 <a href="{{ route('product.detail', $product['slug']) }}"
                    class="w-[100px] h-[40px] flex items-center justify-center
                           border-2 border-[#FFD700] rounded-[12px]
-                          bg-white font-semibold text-primary text-[14px]
+                          bg-white font-semibold text-black text-[14px]
                           hover:bg-[#FFD700] hover:text-white transition">
                     Detail
                 </a>
@@ -281,7 +282,7 @@
 <!-- Load More -->
 <div class="text-center mt-6">
     <a href="{{ route('products.all') }}"
-       class="inline-block bg-[FFD700] border-2 border-primary text-primary px-8 py-3 rounded-full font-semibold hover:bg-primary">
+       class="inline-block bg-[FFD700] border-2 border-primary text-black  px-8 py-3 rounded-full font-semibold hover:bg-primary">
         Lihat Semua Produk
     </a>
 </div>
@@ -487,7 +488,7 @@
                         background: #FFF;
                         box-shadow: 3px 5px 5px rgba(0,0,0,0.25);
                         font-family: Poppins, sans-serif;
-                        font-size: 16px;
+                        font-size: 14px;
                         font-weight: 700;
                         color: #2C2C2C;
                         line-height: 25.6px;
