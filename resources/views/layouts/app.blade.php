@@ -59,6 +59,36 @@ flex-shrink: 0;
     transform: translate(-50%, -50%);
 }
 
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.marquee {
+    animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Geser ke kiri sejauh 50% untuk looping mulus */
+    transform: translateX(-50%);
+  }
+}
+
+/* 2. Aplikasikan Animasi */
+#infinite-marquee {
+  animation: marquee-scroll 10s linear infinite;
+  /* Opsional: Efek pause saat mouse hover */
+  /* animation-play-state: running;  <-- ini buat menghindari konflik jika kamu pake JS untuk pause */
+}
+
+#infinite-marquee:hover {
+  animation-play-state: paused;
+}
+
     </style>
     
     @stack('styles')
