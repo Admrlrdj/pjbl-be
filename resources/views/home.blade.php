@@ -5,54 +5,49 @@
 @section('content')
 
 <!-- Hero Section -->
-<section class="py-16">
+<section class="py-16 lg:w-[90%] mx-auto">
     <div class="container mx-auto px-4">
         
         <!-- Grid 2 kolom -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div class="flex md:flex-row flex-col gap-8">
             
-            <!-- LEFT BADGE -->
-            <div class="flex justify-center lg:justify-start">
+            <div class="flex justify-center lg:justify-center lg:w-1/2">
                 <div class="relative logo-blob w-[300px] h-[260px] md:w-[490px] md:h-[435px]">
 
-                    <!-- Blob background -->
                     <div class="blob-bg absolute inset-0"></div>
 
-                    <!-- Badge / banana logo -->
                     <div class="badge-image absolute inset-0"></div>
                 </div>
             </div>
 
             <!-- RIGHT TEXT -->
-            <div class="text-center lg:text-left">
+            <div class="text-center md:text-left md:w-1/2 flex flex-col justify-center">
                 
                 <!-- Title -->
-                <h1 class="text-[40px] md:text-[64px] font-bold leading-[1.43] text-[#2C2C2C] max-w-[593px]">
+                <h1 class="lg:text-5xl md:text-4xl text-3xl font-semibold mb-2">
                     Nounoufood pasti enaknya.
                 </h1>
 
                 <!-- Description -->
-                <p class="mt-4 text-[18px] md:text-[20px] font-medium leading-[40px] text-[#2C2C2C] max-w-[550px]">
+                <p class="lg:mt-4 mt-2 lg:text-lg md:text-md">
                     Jangan Ragu, Dijamin ketagihan! Temukan Cemilan, Makanan, dan minuman dengan rasa yang autentik yang selalu bikin harimu bersemangat!
                 </p>
 
                 <!-- Stats -->
-                <div class="grid grid-cols-3 gap-4 mt-8 mb-8">
-    @foreach($stats as $stat)
-    <div class="flex w-[161px] px-[19px] pt-[11px] pb-[8px] flex-col justify-center items-center rounded-[15px] border-[3px] border-[#FFD700] bg-white shadow-[0_4px_10px_rgba(0,0,0,0.25)]">
+                <div class="flex md:flex-row flex-col gap-4 mt-4 items-center">
+                @foreach($stats as $stat)
+                <div class="md:w-[200px] min-h-10 w-full border-4 flex flex-col items-center justify-center border-[#FFD700] gap-2 rounded-2xl text-center py-6 px-2 shadow-md">
         
-        <h3 class="flex w-[74.174px] h-[45px] flex-col justify-center text-[#FFD700] text-center font-poppins font-bold text-[32px] leading-[51.2px]">
-            {{ $stat['value'] }}
-        </h3>
+                    <h3 class="text-3xl text-[#FFD700] font-bold">
+                        {{ $stat['value'] }}
+                    </h3>
 
-<p class="flex w-[123px] h-[26px] flex-col justify-center 
-    text-[#2C2C2C] text-center 
-    font-poppins font-bold text-[14.4px] leading-[25.92px]">
-    {{ $stat['label'] }}
-</p>
-    </div>
-    @endforeach
-</div>
+                    <p class="text-md font-semibold">
+                        {{ $stat['label'] }}
+                    </p>
+                    </div>
+                @endforeach
+                </div>
 
             </div>
 
@@ -63,7 +58,7 @@
 
 
 <!-- Features Section -->
-<section class="py-16 bg-white">
+<section class="py-16 bg-white md:w-[]">
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             @foreach($features as $feature)
@@ -145,17 +140,17 @@
 </section>
 
 <!-- Product Catalog Section -->
-<div class="flex items-start justify-between gap-4 overflow-x-auto pb-3">
+<div class="flex items-start w-[90%] mx-auto justify-between gap-4 px-5 overflow-x-auto mb-5">
 
     <!-- Kategori List -->
     <div class="flex gap-4 flex-nowrap width-auto">
         <!-- Semua Produk (Active) -->
         <a href="{{ route('products.all') }}"
            class="
-               flex items-center justify-center
-               px-[34px] py-[18px]
-               rounded-[50px]
-               border-[2px] border-[#FFD700]
+               px-7 py-3
+               text-sm
+               rounded-full
+               border-2 border-[#FFD700]
                bg-white
                shadow-inner shadow-[inset_5px_8px_6px_rgba(0,0,0,0.30)]
                font-semibold text-[#2C2C2C] whitespace-nowrap
@@ -166,14 +161,14 @@
         <!-- Dynamic Categories -->
         @foreach($categories as $category)
             <a href="{{ route('products.category', $category['slug']) }}"
-               class="
-                   flex items-center justify-center
-                   px-[34px] py-[18px]
-                   rounded-[50px] whitespace-nowrap
-                   font-semibold text-[#2C2C2C]
-                   transition
+                class="
+                px-7 py-3
+                text-sm
+                rounded-full
+                font-semibold text-[#2C2C2C] whitespace-nowrap
+                transition
                    @if(request()->routeIs('products.category') && request()->route('slug') === $category['slug'])
-                       border-[2px] border-[#FFD700] bg-white shadow-inner shadow-[inset_5px_8px_6px_rgba(0,0,0,0.30)]
+                       border-2 border-[#FFD700] bg-white shadow-inner shadow-[inset_5px_8px_6px_rgba(0,0,0,0.30)]
                    @else
                        shadow-[5px_5px_6px_rgba(0,0,0,0.25)]
                    @endif
@@ -185,9 +180,9 @@
 
     <!-- Search Bar -->
     <form action="{{ route('products.all') }}" method="GET" class="flex-shrink-0">
-    <div class="relative flex items-center w-[225px] h-[59px]
+    <div class="relative flex items-center w-[188px] h-[47px]
                 rounded-[20px] border-[2px] border-[#FFD700]
-                bg-white shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
+                bg-white">
 
         <input type="text"
             name="search"
@@ -377,7 +372,7 @@
 
     <div class="space-y-6 w-full">
 
-        <div class="flex items-start gap-4">
+        <div class="flex items-center gap-4">
             <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0">
                 <i class="fab fa-whatsapp text-white text-lg"></i>
             </div>
@@ -389,7 +384,7 @@
             </div>
         </div>
 
-        <div class="flex items-start gap-4">
+        <div class="flex items-center gap-4">
             <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0">
                 <i class="fas fa-envelope text-white text-lg"></i>
             </div>
@@ -401,7 +396,7 @@
             </div>
         </div>
 
-        <div class="flex items-start gap-4">
+        <div class="flex items-center gap-4">
             <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0">
                 <i class="fab fa-instagram text-white text-lg"></i>
             </div>
@@ -413,7 +408,7 @@
             </div>
         </div>
 
-        <div class="flex items-start gap-4">
+        <div class="flex items-center gap-4">
             <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0">
                 <i class="fas fa-map-marker-alt text-white text-lg"></i>
             </div>
@@ -423,7 +418,7 @@
             </div>
         </div>
 
-        <div class="flex items-start gap-4">
+        <div class="flex items-center gap-4">
             <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0">
                 <i class="fas fa-building text-white text-lg"></i>
             </div>
@@ -434,7 +429,7 @@
             </div>
         </div>
 
-        <div class="flex items-start gap-4">
+        <div class="flex items-center gap-4">
             <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0">
                 <i class="fas fa-star text-white text-lg"></i>
             </div>
@@ -452,14 +447,12 @@
 
             
             <!-- Map -->
-        <div class="flex justify-center">
-    <div class="relative">
+<div class="flex">
+    <div class="relative w-full">
 
         <!--FRAME -->
-        <div class="overflow-hidden"
+        <div class="overflow-hidden md:w-[450px] md:h-[450px] w-full aspect-square"
             style="
-                width: 473px;
-                height: 455px;
                 border-radius: 15px;
                 border: 3px solid #FFD700;
                 box-shadow: inset 8px 12px 10px rgba(0, 0, 0, 0.25);
@@ -475,29 +468,10 @@
             </iframe>
 
             
-            <div class="absolute bottom-4 left-1/2 -translate-x-1/2">
-                <a href="{{ $contact['maps_url'] }}" target="_blank"
-                    style="
-                        display: inline-flex;
-                        height: 73px;
-                        padding: 8.3px 24px 8.29px 24px;
-                        justify-content: center;
-                        align-items: center;
-                        border-radius: 30px;
-                        border: 3px solid #FFD700;
-                        background: #FFF;
-                        box-shadow: 3px 5px 5px rgba(0,0,0,0.25);
-                        font-family: Poppins, sans-serif;
-                        font-size: 14px;
-                        font-weight: 700;
-                        color: #2C2C2C;
-                        line-height: 25.6px;
-                    "
-                >
+                <a href="{{ $contact['maps_url'] }}" target="_blank" class="absolute bottom-4 left-1/2 -translate-x-1/2 px-7 py-3 rounded-full border-3 border-[#FFD700] bg-white shadow-xl text-xs font-bold text-[#2c2c2c] whitespace-nowrap">
                     <i class="fas fa-map-marker-alt mr-2"></i>
                     Buka di Google Maps
                 </a>
-            </div>
 
         </div>
     </div>

@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('title', $product->name . ' - Nounoufood')
 
 @section('content')
@@ -154,3 +155,5 @@ function shareProduct() {
 }
 </script>
 @endpush
+
+ 
