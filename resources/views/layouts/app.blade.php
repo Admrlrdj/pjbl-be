@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Nounoufood - Cemilan Berkualitas')</title>
 
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -37,6 +38,15 @@
 
         .hover-scale {
             transition: transform 0.3s ease;
+        }
+
+        .faq-title {
+            background: rgba(255, 255, 255, 0.29);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(6.1px);
+            -webkit-backdrop-filter: blur(6.1px);
+            border: 1px solid rgba(255, 255, 255, 0.44);
         }
         
         .hover-scale:hover {
@@ -93,6 +103,26 @@ flex-shrink: 0;
   animation-play-state: paused;
 }
 
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+            opacity: 0;
+        }
+
+        .accordion-content.active {
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        .icon {
+            transition: transform .3 ease;
+        }
+
+        .icon.rotate {
+            transform: rotate(180deg)
+        }
+
     </style>
     
     @stack('styles')
@@ -123,7 +153,36 @@ flex-shrink: 0;
                 });
             }
         });
+
+        const headers = document.querySelectorAll('.accordion-header');
+
+        headers.forEach(header => {
+            header.addEventListener('click', function(){
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('.icon')
+                const isActive = content.classList.contains('active')
+
+                // biar yang lain nutup
+                document.querySelectorAll('.accordion-content').forEach(item => {
+                    item.classList.remove('active')
+                })
+
+                document.querySelectorAll('.icon').forEach(i => {
+                    i.textContent = '+';
+                    i.classList.remove('rotate')
+                })
+
+                // kalo diklik belom aktif, maka aktifin
+                if (!isActive) {
+                    content.classList.add('active')
+                    icon.textContent = "-";
+                    icon.classList.add('rotate')
+                }
+            })
+        })
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     
     @stack('scripts')
 </body>
