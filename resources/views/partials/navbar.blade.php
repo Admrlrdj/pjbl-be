@@ -1,4 +1,11 @@
-<nav class="sticky top-0 z-50 bg-transparent">
+<nav class="
+    @if(request()->routeIs('faq'))
+        absolute top-4 left-1/2 -translate-x-1/2 z-50 w-full
+    @else
+        sticky top-0 z-50 w-full
+    @endif
+">
+
     <div
         class="max-w-[1325px] mx-auto mt-4 px-4
                h-[80px] bg-white border-[4px] border-[#FFD700]
