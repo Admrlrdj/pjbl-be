@@ -106,6 +106,18 @@ class Testimonials extends Component
             $this->dispatch('showToastr', ['type' => 'error', 'message' => 'Testimonial not found.']);
         }
     }
+    public function toggleShowOnHome($id)
+{
+    $testimonial = Testimonial::findOrFail($id);
+    $testimonial->show_on_home = !$testimonial->show_on_home;
+    $testimonial->save();
+
+    $this->dispatch('showToastr', [
+        'type' => 'success',
+        'message' => 'Testimonial visibility updated!'
+    ]);
+}
+
 
     public function updateTestimonial()
     {

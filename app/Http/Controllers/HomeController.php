@@ -80,8 +80,9 @@ class HomeController extends Controller
                 ];
             });
 
-        // Testimonials (static)
+        
        $testimonials = Testimonial::orderBy('id', 'asc')->take(3)->get();
+       $testimonials = Testimonial::where('show_on_home', true)->get();
 
         // Contact info
         $contact = [
@@ -149,7 +150,6 @@ class HomeController extends Controller
 
     public function productDetail($slug)
     {
-        return view('product-detail');
         
         // Produk detail tanpa images[]
         $product = Product::with('category')->where('slug', $slug)->firstOrFail();
@@ -166,7 +166,7 @@ class HomeController extends Controller
 
         return view('product-detail', compact('pageTitle', 'product', 'relatedProducts'));
     }
-
+     
     public function productsByCategory($categorySlug)
     {
         $category = Category::where('slug', $categorySlug)->firstOrFail();

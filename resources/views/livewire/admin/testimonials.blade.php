@@ -42,6 +42,13 @@
                                                 class="text-danger mx-2">
                                                 <i class="dw dw-delete-3"></i>
                                             </a>
+                                            <button 
+    wire:click="toggleShowOnHome({{ $item->id }})"
+    class="btn btn-sm {{ $item->show_on_home ? 'btn-success' : 'btn-secondary' }}"
+>
+    {{ $item->show_on_home ? 'Shown on Home' : 'Hide on Home' }}
+</button>
+
                                         </div>
                                     </td>
                                 </tr>
