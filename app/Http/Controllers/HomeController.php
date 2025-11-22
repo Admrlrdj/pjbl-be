@@ -28,24 +28,26 @@ class HomeController extends Controller
         ];
 
         // Best Sellers (2 produk teratas berdasarkan ordering)
-        $bestSellers = Product::with('category')
-            ->orderBy('ordering', 'asc')
-            ->limit(2)
-            ->get()
-            ->map(function ($product) {
-                return [
-                    'id'          => $product->id,
-                    'name'        => $product->name,
-                    'description' => $product->description,
-                    'size'        => $product->size,
-                    'price'       => $product->formatted_price,
-                    'image'       => $product->image 
-                        ? asset('images/products/' . $product->image)
-                        : null,
-                    'slug'        => $product->slug,
-                    'category'    => $product->category->name ?? 'Uncategorized',
-                ];
-            });
+       $bestSellers = Product::with('category')
+    ->where('is_best_seller', true)
+    ->orderBy('ordering', 'asc')
+    ->take(2)
+    ->get()
+    ->map(function ($product) {
+        return [
+            'id'          => $product->id,
+            'name'        => $product->name,
+            'description' => \Illuminate\Support\Str::limit($product->description, 60),
+            'size'        => $product->size,
+            'price'       => $product->formatted_price,
+            'image'       => $product->image 
+                ? asset('images/products/' . $product->image)
+                : null,
+            'slug'        => $product->slug,
+            'category'    => $product->category->name ?? 'Uncategorized',
+            'category_id' => $product->category_id,
+        ];
+    });
 
         // All products (untuk katalog)
         $products = Product::with('category')

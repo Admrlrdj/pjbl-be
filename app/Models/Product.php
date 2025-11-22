@@ -20,6 +20,7 @@ class Product extends Model
         'image',
         'slug',
         'ordering',
+        'is_best_seller',
     ];
 
     public function sluggable(): array
@@ -36,6 +37,7 @@ class Product extends Model
 }
     public function category()
     {
+        
         return $this->belongsTo(Category::class, 'category_id');
     }
 };

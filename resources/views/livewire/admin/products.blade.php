@@ -46,6 +46,17 @@
                                                 class="text-danger mx-2">
                                                 <i class="dw dw-delete-3"></i>
                                             </a>
+                                            <div class="mt-4">
+    <label class="flex items-center gap-2">
+      <input type="checkbox"
+       {{ $item->is_best_seller ? 'checked' : '' }}
+       wire:change="toggleBestSeller({{ $item->id }}, $event.target.checked)">
+
+
+        <span>Jadikan Best Seller</span>
+    </label>
+</div>
+
                                         </div>
                                     </td>
                                 </tr>
