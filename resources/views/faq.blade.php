@@ -16,42 +16,22 @@
     </div>
     
     <div class="md:max-w-3xl w-[90%]  mx-auto my-10">
-      <div class="">
-        <div class="bg-white shadow-md border-b-2 border-amber-200 overflow-hidden">
-          <button class="accordion-header w-full px-6 py-3 flex justify-between items-center transition-all bg-amber-50 duration-300">
-              <span class="text-lg font-semibold text-amber-900">What is your return policy?</span>
-              <span class="icon text-2xl font-bold text-amber-600">+</span>
-          </button>
-          <div class="accordion-content">
-              <div class="px-6 py-4 text-gray-700">
-                  <p>We offer a 30-day return policy for all unused items in their original packaging. Simply contact our customer service team to initiate a return, and we'll provide you with a prepaid shipping label.</p>
-              </div>
+    @foreach ($faqs as $faq)
+    <div class="bg-white shadow-md border-b-2 border-amber-200 overflow-hidden">
+      <button class="accordion-header w-full px-6 py-3 flex justify-between items-center transition-all bg-amber-50 duration-300">
+          <span class="text-lg font-semibold text-amber-900">{{ $faq->question }}</span>
+          <span class="icon text-2xl font-bold text-amber-600">+</span>
+      </button>
+      <div class="accordion-content">
+          <div class="px-6 py-4 text-gray-700">
+              <p>{{ $faq->answer }}</p>
           </div>
-        </div>
-        <div class="bg-white shadow-md border-b-2 border-amber-200 overflow-hidden">
-          <button class="accordion-header w-full px-6 py-3 flex justify-between items-center transition-all bg-amber-50 duration-300">
-              <span class="text-lg font-semibold text-amber-900">What is your return policy?</span>
-              <span class="icon text-2xl font-bold text-amber-600">+</span>
-          </button>
-          <div class="accordion-content">
-              <div class="px-6 py-4 text-gray-700">
-                  <p>We offer a 30-day return policy for all unused items in their original packaging. Simply contact our customer service team to initiate a return, and we'll provide you with a prepaid shipping label.</p>
-              </div>
-          </div>
-        </div>
-        <div class="bg-white shadow-md border-b-2 border-amber-200 overflow-hidden">
-          <button class="accordion-header w-full px-6 py-3 flex justify-between items-center transition-all bg-amber-50 duration-300">
-              <span class="text-lg font-semibold text-amber-900">What is your return policy?</span>
-              <span class="icon text-2xl font-bold text-amber-600">+</span>
-          </button>
-          <div class="accordion-content">
-              <div class="px-6 py-4 text-gray-700">
-                  <p>We offer a 30-day return policy for all unused items in their original packaging. Simply contact our customer service team to initiate a return, and we'll provide you with a prepaid shipping label.</p>
-              </div>
-          </div>
-        </div>
       </div>
     </div>
+    @endforeach
+    </div>
+
+
   </section>
   <section>
   <div class="bg-[#FFE34F] py-2 overflow-hidden whitespace-nowrap mb-10">

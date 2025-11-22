@@ -38,7 +38,7 @@ class HomeController extends Controller
                     'name'        => $product->name,
                     'description' => $product->description,
                     'size'        => $product->size,
-                    'price'       => $product->price,
+                    'price'       => $product->formatted_price,
                     'image'       => $product->image 
                         ? asset('images/products/' . $product->image)
                         : null,
@@ -113,21 +113,14 @@ class HomeController extends Controller
         return view('our-story', ['pageTitle' => 'Our Story - Nounoufood']);
     }
 
-    public function faq()
-    {
-        $pageTitle = 'FAQ - Nounoufood';
+   public function faq()
+{
+    $pageTitle = 'FAQ - Nounoufood';
 
-        $faqs = [
-            ['question' => 'Apakah produk Nounoufood halal?', 'answer' => 'Ya, semua produk Nounoufood dijamin halal dan menggunakan bahan-bahan berkualitas yang aman dikonsumsi.'],
-            ['question' => 'Bagaimana cara memesan produk?', 'answer' => 'Anda bisa memesan melalui WhatsApp di nomor +62 819-3681-0305 atau langsung datang ke lokasi kami.'],
-            ['question' => 'Apakah ada minimum order?', 'answer' => 'Tidak ada minimum order.'],
-            ['question' => 'Berapa lama waktu pengiriman?', 'answer' => 'Untuk wilayah Bogor, pengiriman biasanya 1–2 hari kerja.'],
-            ['question' => 'Apakah bisa menjadi reseller?', 'answer' => 'Tentu! Kami membuka kesempatan untuk mitra dan reseller.'],
-            ['question' => 'Bagaimana cara penyimpanan produk?', 'answer' => 'Frozen simpan di freezer, snack kering simpan di tempat kering tertutup.'],
-        ];
+    $faqs = \App\Models\FAQ::orderBy('id', 'asc')->get();
 
-        return view('faq', compact('pageTitle', 'faqs'));
-    }
+    return view('faq', compact('pageTitle', 'faqs'));
+}
 
     public function contact()
     {
@@ -149,7 +142,7 @@ class HomeController extends Controller
     }
 
     public function productDetail($slug)
-    {
+    {   
         
         // Produk detail tanpa images[]
         $product = Product::with('category')->where('slug', $slug)->firstOrFail();

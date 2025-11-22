@@ -140,42 +140,30 @@
 </section>
 
 <!-- Product Catalog Section -->
-<div class="flex items-start w-[90%] mx-auto justify-between gap-4 px-5 overflow-x-auto mb-5">
-
+<div class="flex flex-col md:flex-row items-start md:items-center w-[90%] mx-auto justify-between gap-4 px-5 mb-5">
     <!-- Kategori List -->
-    <div class="flex gap-4 flex-nowrap width-auto">
+    <div class="flex gap-3 flex-nowrap overflow-x-auto pb-2">
         <!-- Semua Produk (Active) -->
         <a href="{{ route('products.all') }}"
-           class="
-               px-7 py-3
-               text-sm
-               rounded-full
-               border-2 border-[#FFD700]
-               bg-white
-               shadow-inner shadow-[inset_5px_8px_6px_rgba(0,0,0,0.30)]
-               font-semibold text-[#2C2C2C] whitespace-nowrap
-           ">
-            <i class="fas fa-th mr-2"></i> Semua Produk
-        </a>
+   class="px-6 py-2 text-sm rounded-full border-2 border-[#FFD700] bg-white
+          shadow-inner font-semibold whitespace-nowrap">
+    <i class="fas fa-th mr-1"></i> Semua Produk
+</a>
+
 
         <!-- Dynamic Categories -->
         @foreach($categories as $category)
-            <a href="{{ route('products.category', $category['slug']) }}"
-                class="
-                px-7 py-3
-                text-sm
-                rounded-full
-                font-semibold text-[#2C2C2C] whitespace-nowrap
-                transition
-                   @if(request()->routeIs('products.category') && request()->route('slug') === $category['slug'])
-                       border-2 border-[#FFD700] bg-white shadow-inner shadow-[inset_5px_8px_6px_rgba(0,0,0,0.30)]
-                   @else
-                       shadow-[5px_5px_6px_rgba(0,0,0,0.25)]
-                   @endif
-               ">
-                <i class="fas fa-cookie mr-2"></i> {{ $category['name'] }}
-            </a>
-        @endforeach
+<a href="{{ route('products.category', $category['slug']) }}"
+   class="px-6 py-2 text-sm rounded-full font-semibold whitespace-nowrap
+          @if(request()->routeIs('products.category') && request()->route('slug') === $category['slug'])
+              border-2 border-[#FFD700] bg-white shadow-inner
+          @else
+              shadow-md
+          @endif">
+    <i class="fas fa-cookie mr-1"></i> {{ $category['name'] }}
+</a>
+@endforeach
+
     </div>
 
     <!-- Search Bar -->
@@ -209,11 +197,11 @@
 <div class="w-[1199px] h-[3px] bg-[#FFD700] mx-auto mb-8"></div>
 
 <!-- Product Grid -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 justify-items-center mb-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center mb-8">
 
     @foreach($products->take(6) as $product)
-    <div class="w-[579px] h-[192px] bg-white border-[4px] border-[#FFD700] rounded-[24px] shadow-lg flex p-4 mt-3 mb-2">
-
+    <div class="w-full max-w-[540px] bg-white border-[4px] border-[#FFD700]
+            rounded-[20px] shadow-lg flex p-4">
         <!-- Left: Image -->
         <a href="{{ route('product.detail', $product['slug']) }}">
             <img src="{{ $product['image'] }}"

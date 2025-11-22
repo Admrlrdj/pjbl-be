@@ -29,11 +29,11 @@
         }
         
         .text-primary {
-            color: #FB9E3A;
+            color: #FB9E3A !important;
         }
         
         .border-primary {
-            border-color: #FFD700;
+            border-color: #FFD700 !important;
         }
 
 
