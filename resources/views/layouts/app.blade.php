@@ -1,38 +1,43 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="/images/site/{{ isset(settings()->site_favicon) ? settings()->site_favicon : '' }}" />
     <title>@yield('title', 'Nounoufood - Cemilan Berkualitas')</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- App CSS -->
     <!-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> -->
-    
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
         }
-        
+
         .bg-primary {
             background-color: #FDB913;
         }
-        
+
         .text-primary {
             color: #FB9E3A !important;
         }
-        
+
         .border-primary {
             border-color: #FFD700 !important;
         }
@@ -50,99 +55,112 @@
             -webkit-backdrop-filter: blur(6.1px);
             border: 1px solid rgba(255, 255, 255, 0.44);
         }
-        
+
         .hover-scale:hover {
             transform: scale(1.05);
         }
 
         .logo-blob .blob-bg {
             width: 489.773px;
-height: 435.468px;
-flex-shrink: 0;
-    background: url("/images/bg.png") center / contain no-repeat;
-    max-width: 90%; /* Buat agar tidak terlalu mepet, misal 90% dari parent */
-    max-height: 90%;
-}
+            height: 435.468px;
+            flex-shrink: 0;
+            background: url("/images/bg.png") center / contain no-repeat;
+            max-width: 90%;
+            /* Buat agar tidak terlalu mepet, misal 90% dari parent */
+            max-height: 90%;
+        }
 
-.logo-blob .badge-image {
-    width: 399px;
-    height: 392px;
-    background: url("/images/pisang.png") 50% / cover no-repeat;
+        .logo-blob .badge-image {
+            width: 399px;
+            height: 392px;
+            background: url("/images/pisang.png") 50% / cover no-repeat;
 
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
 
-@keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
 
-.marquee {
-    animation: marquee 15s linear infinite;
-}
+            100% {
+                transform: translateX(-50%);
+            }
+        }
 
-@keyframes marquee-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    /* Geser ke kiri sejauh 50% untuk looping mulus */
-    transform: translateX(-50%);
-  }
-}
+        .marquee {
+            animation: marquee 15s linear infinite;
+        }
 
-.marquee-container {
-    overflow: hidden;
-    width: 100%;
-}
+        @keyframes marquee-scroll {
+            from {
+                transform: translateX(0);
+            }
 
-.marquee-track {
-    display: flex;
-    width: max-content;
-    animation: marqueeSlide 18s linear infinite;
-}
+            to {
+                /* Geser ke kiri sejauh 50% untuk looping mulus */
+                transform: translateX(-50%);
+            }
+        }
 
-.marquee-img {
-    width: 300px;
-    height: 200px;
-    margin: 0 8px;
-    border-radius: 16px;
-    object-fit: cover;
-}
+        .marquee-container {
+            overflow: hidden;
+            width: 100%;
+        }
 
-@media (min-width: 768px) {
-    .marquee-img {
-        width: 500px;
-        height: 400px;
-    }
-}
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marqueeSlide 18s linear infinite;
+        }
 
-@keyframes marqueeSlide {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
+        .marquee-img {
+            width: 300px;
+            height: 200px;
+            margin: 0 8px;
+            border-radius: 16px;
+            object-fit: cover;
+        }
 
-.scrollbar-hide::-webkit-scrollbar {
-    display: none;
-}
-.scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
+        @media (min-width: 768px) {
+            .marquee-img {
+                width: 500px;
+                height: 400px;
+            }
+        }
 
-/* 2. Aplikasikan Animasi */
-#infinite-marquee {
-  animation: marquee-scroll 15s linear infinite;
-  /* Opsional: Efek pause saat mouse hover */
-  /* animation-play-state: running;  <-- ini buat menghindari konflik jika kamu pake JS untuk pause */
-}
+        @keyframes marqueeSlide {
+            0% {
+                transform: translateX(0);
+            }
 
-#infinite-marquee:hover {
-  animation-play-state: paused;
-}
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* 2. Aplikasikan Animasi */
+        #infinite-marquee {
+            animation: marquee-scroll 15s linear infinite;
+            /* Opsional: Efek pause saat mouse hover */
+            /* animation-play-state: running;  <-- ini buat menghindari konflik jika kamu pake JS untuk pause */
+        }
+
+        #infinite-marquee:hover {
+            animation-play-state: paused;
+        }
 
         .accordion-content {
             max-height: 0;
@@ -163,37 +181,37 @@ flex-shrink: 0;
         .icon.rotate {
             transform: rotate(180deg)
         }
-
     </style>
-    
+
     @stack('styles')
 </head>
+
 <body class="bg-white">
-    
+
     <!-- Navbar -->
     @include('partials.navbar')
-    
+
     <!-- Main Content -->
     <main>
         @yield('content')
     </main>
-    
+
     <!-- Footer -->
     @include('partials.footer')
-    
+
     <!-- Scripts -->
     <script>
         function toggleModal(modalID) {
-        document.getElementById(modalID).classList.toggle("hidden");
-        document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
-        document.getElementById(modalID).classList.toggle("flex");
-        document.getElementById(modalID + "-backdrop").classList.toggle("flex");
-    }
+            document.getElementById(modalID).classList.toggle("hidden");
+            document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
+            document.getElementById(modalID).classList.toggle("flex");
+            document.getElementById(modalID + "-backdrop").classList.toggle("flex");
+        }
         // Mobile menu toggle
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
-            
+
             if (mobileMenuButton) {
                 mobileMenuButton.addEventListener('click', function() {
                     mobileMenu.classList.toggle('hidden');
@@ -204,7 +222,7 @@ flex-shrink: 0;
         const headers = document.querySelectorAll('.accordion-header');
 
         headers.forEach(header => {
-            header.addEventListener('click', function(){
+            header.addEventListener('click', function() {
                 const content = this.nextElementSibling;
                 const icon = this.querySelector('.icon')
                 const isActive = content.classList.contains('active')
@@ -229,8 +247,11 @@ flex-shrink: 0;
         })
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+    </script>
+
     @stack('scripts')
 </body>
+
 </html>
