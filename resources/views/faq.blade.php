@@ -3,14 +3,14 @@
   @section('title', 'Nounoufood - Our Story')
 
   @section('content')
-  <section class="w-full pt-20 md:pt-0">
+  <section class="w-full mt-0">
     <div class="relative w-full h-auto">
       <img src="/images/faq-bg.png" class="w-full md:h-auto h-[300px] object-cover object-center" alt="">
 
-      <div class="absolute left-0 top-0 inset-0 flex justify-center items-center">
-        <div class="md:h-[50%] md:w-[70%] w-[90%] h-[70%] faq-title rounded-3xl text-center p-5 flex flex-col justify-center items-center">
-          <h1 class="text-3xl font-semibold">Frequently Asked Question</h1>
-          <p class="text-lg">Pertanyaanmu akan dijawab di sini</p>
+      <div class="absolute left-0 top-0 inset-0 flex justify-center items-center mt-18">
+        <div class="md:h-[60%] md:w-[70%] w-[90%] h-[70%] faq-title rounded-3xl text-center p-5 flex flex-col justify-center items-center">
+          <h1 class="text-4xl font-semibold">Frequently Asked Question</h1>
+          <p class="text-2xl">Pertanyaanmu akan dijawab di sini</p>
         </div>
       </div>
     </div>

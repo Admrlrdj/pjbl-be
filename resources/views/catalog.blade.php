@@ -21,7 +21,7 @@
                           transition-all duration-300 gap-2
                           {{ request()->routeIs('products.all') 
                              ? 'bg-orange-400 text-white shadow-md' 
-                             : 'bg-white text-zinc-800 hover:bg-orange-400 hover:text-white' }}">
+                             : 'bg-white text-zinc-800 hover:bg-orange-400 hover:text-[#FB9E3A]' }}">
                     <i class="fas fa-th text-sm"></i> 
                     <span>Semua Produk</span>
                 </a>

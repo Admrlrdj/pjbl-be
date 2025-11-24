@@ -5,7 +5,7 @@
 
             <!-- Logo -->
             <div class="flex flex-col items-center md:items-start text-center md:text-left">
-                <img src="/images/logokuning.png" class="h-32 mb-4 object-contain">
+                <img src="/images/logokuning.png" class="h-32 mb-4 object-contain ml-12">
                 <p class="text-xl font-bold">Terima mitra Agen dan reseller</p>
             </div>
 
