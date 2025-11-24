@@ -22,6 +22,7 @@
                             <th>Description</th>
                             <th>Image</th>
                             <th>Action</th>
+                            <th>Best Seller</th>
                         </thead>
                         <tbody id="sortable_categories">
                             @forelse ($products as $item)
@@ -46,7 +47,10 @@
                                                 class="text-danger mx-2">
                                                 <i class="dw dw-delete-3"></i>
                                             </a>
-                                            <div class="mt-4">
+                                        </div>
+                                    </td>
+                                    <td>
+                                           <div class="mt-4">
     <label class="flex items-center gap-2">
       <input type="checkbox"
        {{ $item->is_best_seller ? 'checked' : '' }}
@@ -57,7 +61,6 @@
     </label>
 </div>
 
-                                        </div>
                                     </td>
                                 </tr>
                             @empty

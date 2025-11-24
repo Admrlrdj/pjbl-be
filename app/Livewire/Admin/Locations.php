@@ -8,7 +8,7 @@ use App\Models\Location;
 class Locations extends Component
 {
     public $isUpdateLocationMode = false;
-    public $location_id, $location_name, $location_address, $location_maps_url;
+    public $location_id, $location_name, $location_address, $location_maps_url, $location_maps_embed;
 
     protected $listeners = [
         'deleteLocationAction' => 'deleteLocationAction',
@@ -32,6 +32,7 @@ class Locations extends Component
             'location_name' => 'required|unique:locations,name',
             'location_address' => 'required',
             'location_maps_url' => 'required|url',
+            'location_maps_embed' => 'required',
         ], [
             'location_name.required' => 'Location Name is required',
             'location_name.unique' => 'Location Name already exists',
@@ -44,6 +45,7 @@ class Locations extends Component
         $location->name = $this->location_name;
         $location->address = $this->location_address;
         $location->maps_url = $this->location_maps_url;
+       $location->maps_embed = $this->location_maps_embed;
         $saved = $location->save();
 
         if ($saved) {
@@ -61,6 +63,8 @@ class Locations extends Component
         $this->location_name = Location::find($id)->name;
         $this->location_address = Location::find($id)->address;
         $this->location_maps_url = Location::find($id)->maps_url;
+        $this->location_maps_embed = $location->maps_embed;
+
         $this->isUpdateLocationMode = true;
         $this->showLocationModalForm();
     }
@@ -84,6 +88,8 @@ class Locations extends Component
         $location->name = $this->location_name;
         $location->address = $this->location_address;
         $location->maps_url = $this->location_maps_url;
+        $location->maps_embed = $this->location_maps_embed;
+
         $updated = $location->save();
 
         if ($updated) {

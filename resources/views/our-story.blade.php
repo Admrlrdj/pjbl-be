@@ -35,42 +35,19 @@
     </div>
 </div>
 <div class="w-full overflow-hidden pb-5">
-    <!-- Container -->
-    <div class="relative w-[2000px] flex marquee">
-        <!-- Repeat 2x untuk efek looping sempurna -->
-        <div class="flex">
-            <!-- Foto 1 -->
-            <div class="w-[500px] h-[400px] bg-zinc-600 rounded-xl  text-white text-4xl flex items-center justify-center m-2">
-                Foto 1
-            </div>
-            <!-- Foto 2 -->
-            <div class="w-[500px] h-[400px] bg-zinc-600 rounded-xl  text-white text-4xl flex items-center justify-center m-2">
-                Foto 2
-            </div>
-            <!-- Foto 3 -->
-            <div class="w-[500px] h-[400px] bg-zinc-600 rounded-xl  text-white text-4xl flex items-center justify-center m-2">
-                Foto 3
-            </div>
-            <!-- Foto 4 -->
-            <div class="w-[500px] h-[400px] bg-zinc-600 rounded-xl  text-white text-4xl flex items-center justify-center m-2">
-                Foto 4
-            </div>
-        </div>
+    <div class="marquee-container">
+        <div class="marquee-track">
+            <!-- Loop 1 -->
+            <img src="/images/Gradient.png" class="marquee-img" />
+            <img src="/images/Gradient2.png" class="marquee-img" />
+            <img src="/images/Gradient3.png" class="marquee-img" />
+            <img src="/images/Gradient.png" class="marquee-img" />
 
-        <!-- Copy kedua (looping) -->
-        <div class="flex">
-            <div class="w-[500px] h-[400px] bg-zinc-600 rounded-xl  text-white text-4xl flex items-center justify-center m-2">
-                Foto 1
-            </div>
-            <div class="w-[500px] h-[400px] bg-zinc-600 rounded-xl  text-white text-4xl flex items-center justify-center m-2">
-                Foto 2
-            </div>
-            <div class="w-[500px] h-[400px] bg-zinc-600 rounded-xl  text-white text-4xl flex items-center justify-center m-2">
-                Foto 3
-            </div>
-            <div class="w-[500px] h-[400px] bg-zinc-600 rounded-xl  text-white text-4xl flex items-center justify-center m-2">
-                Foto 4
-            </div>
+            <!-- Loop 2 (duplicate) -->
+            <img src="/images/Gradient.png" class="marquee-img" />
+            <img src="/images/Gradient2.png" class="marquee-img" />
+            <img src="/images/Gradient3.png" class="marquee-img" />
+            <img src="/images/Gradient.png" class="marquee-img" />
         </div>
     </div>
 </div>

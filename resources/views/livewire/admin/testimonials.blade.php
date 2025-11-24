@@ -90,14 +90,20 @@
                             <span class="text-danger ml-1">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="">Rating</label>
-                        <input type="number" class="form-control" wire:model="testimonial_rating"
-                            placeholder="Enter Rating">
-                        @error('testimonial_rating')
-                            <span class="text-danger ml-1">{{ $message }}</span>
-                        @enderror
-                    </div>
+    
+                   <div class="form-group">
+    <label for="">Rating</label>
+    <select class="form-control" wire:model="testimonial_rating">
+        <option value="">Pilih Rating</option>
+        @foreach(range(1, 5) as $rating)
+            <option value="{{ $rating }}">{{ $rating }}</option>
+        @endforeach
+    </select>
+    
+    @error('testimonial_rating')
+        <span class="text-danger ml-1">{{ $message }}</span>
+    @enderror
+</div>
                     <div class="form-group">
                         <label for="">Comment</label>
                         <textarea class="form-control" wire:model="testimonial_comment" placeholder="Enter Comment" rows="3"></textarea>

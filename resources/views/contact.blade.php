@@ -67,8 +67,8 @@
         <div class="flex justify-center mt-12">
             <button
                 type="submit"
-                class="px-16 py-3 text-lg font-semibold text-gray-800 bg-white border border-yellow-400
-                       rounded-full shadow-md hover:bg-yellow-400 hover:text-white transition"
+                class="px-16 py-3 text-lg font-semibold text-gray-800 bg-white border-2 border-[#ffd700]
+                       rounded-full shadow-md hover:bg-yellow-400 hover:text-[#FFD700] transition"
             >
                 Submit
             </button>

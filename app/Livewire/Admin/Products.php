@@ -215,18 +215,44 @@ class Products extends Component
 
     public function toggleBestSeller($productId, $status)
 {
+    // Pastikan status adalah boolean
+    $status = filter_var($status, FILTER_VALIDATE_BOOLEAN);
+
+    // 1. Cek Batasan (Hanya jika sedang mencoba mengaktifkan / TRUE)
+    if ($status) {
+        $currentBestSellerCount = Product::where('is_best_seller', true)->count();
+        
+        if ($currentBestSellerCount >= 2) {
+            $this->dispatch('alert', [
+                'type' => 'error',
+                'message' => "Maksimal hanya 2 produk Best Seller yang diizinkan."
+            ]);
+            
+            // PENTING: Kembalikan checkbox ke posisi 'unchecked' di sisi user
+            // Tanpa ini, tombol visual akan terlihat 'aktif' padahal di database gagal.
+            $this->dispatch('refresh-component'); // Atau $this->render();
+            return; 
+        }
+    }
+
+    // 2. Eksekusi Update
     $product = Product::find($productId);
 
     if ($product) {
-        $product->is_best_seller = $status;
-        $product->save();
+        $product->update(['is_best_seller' => $status]);
 
         $this->dispatch('showToastr', [
             'type' => 'success',
-            'message' => 'Best seller updated.'
+            'message' => $status ? 'Produk dijadikan Best Seller.' : 'Status Best Seller dicabut.'
+        ]);
+    } else {
+         $this->dispatch('alert', [
+            'type' => 'error',
+            'message' => "Produk tidak ditemukan."
         ]);
     }
 }
+
 
 
     public function hideProductModalForm()

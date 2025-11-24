@@ -17,9 +17,9 @@
     
     <div class="md:max-w-3xl w-[90%]  mx-auto my-10">
     @foreach ($faqs as $faq)
-    <div class="bg-white shadow-md border-b-2 border-amber-200 overflow-hidden">
-      <button class="accordion-header w-full px-6 py-3 flex justify-between items-center transition-all bg-amber-50 duration-300">
-          <span class="text-lg font-semibold text-amber-900">{{ $faq->question }}</span>
+    <div class="bg-[#FFD700] shadow-md border-b-2 border-[#FFD700] overflow-hidden">
+      <button class="accordion-header w-full px-6 py-3 flex justify-between items-center transition-all bg-[#FFD700] duration-300">
+          <span class="text-lg font-semibold text-zinc-800">{{ $faq->question }}</span>
           <span class="icon text-2xl font-bold text-amber-600">+</span>
       </button>
       <div class="accordion-content">
@@ -45,42 +45,19 @@
     </div>
 </div>
 <div class="w-full overflow-hidden pb-5">
-    <!-- Container -->
-    <div class="relative w-[2000px] flex marquee">
-        <!-- Repeat 2x untuk efek looping sempurna -->
-        <div class="flex">
-            <!-- Foto 1 -->
-            <div class="md:w-[500px] md:h-[400px] w-[300px] h-[200px] bg-zinc-600 rounded-xl  text-white text-4xl flex items-center justify-center m-2">
-                Foto 1
-            </div>
-            <!-- Foto 2 -->
-            <div class="md:w-[500px] md:h-[400px] w-[300px] h-[200px] bg-zinc-600 rounded-xl  text-white text-4xl flex items-center justify-center m-2">
-                Foto 2
-            </div>
-            <!-- Foto 3 -->
-            <div class="md:w-[500px] md:h-[400px] w-[300px] h-[200px] bg-zinc-600 rounded-xl  text-white text-4xl flex items-center justify-center m-2">
-                Foto 3
-            </div>
-            <!-- Foto 4 -->
-            <div class="md:w-[500px] md:h-[400px] w-[300px] h-[200px] bg-zinc-600 rounded-xl  text-white text-4xl flex items-center justify-center m-2">
-                Foto 4
-            </div>
-        </div>
+    <div class="marquee-container">
+        <div class="marquee-track">
+            <!-- Loop 1 -->
+            <img src="/images/Gradient.png" class="marquee-img" />
+            <img src="/images/Gradient2.png" class="marquee-img" />
+            <img src="/images/Gradient3.png" class="marquee-img" />
+            <img src="/images/Gradient.png" class="marquee-img" />
 
-        <!-- Copy kedua (looping) -->
-        <div class="flex">
-            <div class="md:w-[500px] md:h-[400px] w-[300px] h-[200px] bg-zinc-600 rounded-xl  text-white text-4xl flex items-center justify-center m-2">
-                Foto 1
-            </div>
-            <div class="md:w-[500px] md:h-[400px] w-[300px] h-[200px] bg-zinc-600 rounded-xl  text-white text-4xl flex items-center justify-center m-2">
-                Foto 2
-            </div>
-            <div class="md:w-[500px] md:h-[400px] w-[300px] h-[200px] bg-zinc-600 rounded-xl  text-white text-4xl flex items-center justify-center m-2">
-                Foto 3
-            </div>
-            <div class="md:w-[500px] md:h-[400px] w-[300px] h-[200px] bg-zinc-600 rounded-xl  text-white text-4xl flex items-center justify-center m-2">
-                Foto 4
-            </div>
+            <!-- Loop 2 (duplicate) -->
+            <img src="/images/Gradient.png" class="marquee-img" />
+            <img src="/images/Gradient2.png" class="marquee-img" />
+            <img src="/images/Gradient3.png" class="marquee-img" />
+            <img src="/images/Gradient.png" class="marquee-img" />
         </div>
     </div>
 </div>

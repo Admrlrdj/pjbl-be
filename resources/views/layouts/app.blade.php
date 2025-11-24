@@ -93,9 +93,48 @@ flex-shrink: 0;
   }
 }
 
+.marquee-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marqueeSlide 18s linear infinite;
+}
+
+.marquee-img {
+    width: 300px;
+    height: 200px;
+    margin: 0 8px;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+@media (min-width: 768px) {
+    .marquee-img {
+        width: 500px;
+        height: 400px;
+    }
+}
+
+@keyframes marqueeSlide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 /* 2. Aplikasikan Animasi */
 #infinite-marquee {
-  animation: marquee-scroll 10s linear infinite;
+  animation: marquee-scroll 15s linear infinite;
   /* Opsional: Efek pause saat mouse hover */
   /* animation-play-state: running;  <-- ini buat menghindari konflik jika kamu pake JS untuk pause */
 }

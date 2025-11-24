@@ -7,13 +7,13 @@
   <img src="/images/logonounou.png" class="aspect-video object-cover h-[200px] mx-auto " alt="">
   <div class="border-t-4 border-[#FFD700] mb-10"></div>
 
-  <div class="flex w-full lg:gap-6 gap-2 mb-10 flex-col lg:flex-row">
+ <div class="flex w-full gap-8 mb-10 flex-col lg:flex-row">
 
     <!-- Product Image -->
     <div class="lg:w-1/2">
       <img 
         src="{{ asset('images/products/' . $product->image) }}" 
-        class="lg:w-[584] h-[467]  rounded-[30px] shadow-md object-cover object-center mb-8 mx-auto lg:mb-0" 
+        class="lg:w-[500] h-[400]  rounded-[30px] shadow-md object-cover object-center mb-8 mx-auto lg:mb-0" 
         alt="{{ $product->name }}">
     </div>
 
@@ -30,10 +30,11 @@
       </p>
 
       <a 
-        href="https://wa.me/6281936810305?text=Halo, saya ingin memesan {{ $product->name }}" 
-        class="lg:px-16 py-2 px-8 text-lg font-semibold text-gray-800 bg-white border border-yellow-400 rounded-xl shadow-md hover:bg-yellow-400 hover:text-white transition">
-        Buy Now
-      </a>
+            href="https://wa.me/6281936810305?text=Halo, saya ingin memesan {{ $product->name }}" 
+            class="lg:px-16 py-2 px-8 text-lg font-semibold text-gray-800 bg-white border-2 border-[#FFD700] rounded-xl shadow-md hover:bg-yellow-400 hover:text-[#ffd700] transition"
+        >
+            Buy Now
+        </a>
     </div>
 
   </div>
@@ -70,13 +71,13 @@
 
             <a 
               href="https://wa.me/6281936810305?text=Halo, saya ingin memesan {{ $related->name }}"
-              class="px-8 py-0.5 text-lg font-semibold text-gray-800 bg-white border-yellow-400 rounded-xl border-2 shadow-md hover:bg-yellow-400 hover:text-white transition">
+              class="px-8 py-0.5 text-lg font-semibold text-gray-800 bg-white border-yellow-400 rounded-xl border-2 shadow-md hover:bg-yellow-400 hover:text-[#FFD700] transition">
               Buy
             </a>
 
             <a 
               href="{{ route('product.detail', $related->slug) }}"
-              class="px-8 py-0.5 text-lg font-semibold text-gray-800 bg-white border-[#FFAE00] rounded-xl border-2 shadow-md hover:bg-[#FFAE00] hover:text-white transition">
+              class="px-8 py-0.5 text-lg font-semibold text-gray-800 bg-white border-yellow-400 rounded-xl border-2 shadow-md hover:bg-[#FFAE00] hover:text-[#FFD700] transition">
               Detail
             </a>
 
