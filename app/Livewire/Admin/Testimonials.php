@@ -15,6 +15,9 @@ class Testimonials extends Component
         $testimonial_name,
         $testimonial_rating,
         $testimonial_comment,
+        $product_id,
+        $avatar,
+        $olf_avatar,
         $image,
         $old_image;
 
@@ -43,7 +46,7 @@ class Testimonials extends Component
             'testimonial_name' => 'required|unique:testimonials,name',
             'testimonial_rating' => 'required|integer|min:1|max:5',
             'testimonial_comment' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ], [
             'testimonial_name.required' => 'Name is required',
             'testimonials_name.unique' => 'Name already exists',
@@ -52,7 +55,6 @@ class Testimonials extends Component
             'testimonials_rating.min' => 'Testimonial Rating must be at least 1',
             'testimonials_rating.max' => 'Testimonial Rating must not exceed 5',
             'testimonials_comment.required' => 'Testimonial Comment is required',
-            'image.required' => 'Testimonial Image is required',
             'image.image' => 'The file must be an image',
             'image.mimes' => 'The image must be a file of type: jpeg, png, jpg',
             'image.max' => 'The image size must not exceed 2MB',
@@ -77,6 +79,8 @@ class Testimonials extends Component
             File::copy($tempPath, $path . $filename);
 
             $testimonial->image = $filename;
+        }else {
+            $testimonial->image = 'default-avatar.png';
         }
         $saved = $testimonial->save();
 
@@ -106,6 +110,18 @@ class Testimonials extends Component
             $this->dispatch('showToastr', ['type' => 'error', 'message' => 'Testimonial not found.']);
         }
     }
+    public function toggleShowOnHome($id)
+{
+    $testimonial = Testimonial::findOrFail($id);
+    $testimonial->show_on_home = !$testimonial->show_on_home;
+    $testimonial->save();
+
+    $this->dispatch('showToastr', [
+        'type' => 'success',
+        'message' => 'Testimonial visibility updated!'
+    ]);
+}
+
 
     public function updateTestimonial()
     {
@@ -117,7 +133,7 @@ class Testimonials extends Component
             'testimonial_name' => 'required|unique:testimonials,name,' . $this->testimonial_id,
             'testimonial_rating' => 'required|integer|min:1|max:5',
             'testimonial_comment' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+           'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ], [
             'testimonial_name.required' => 'Name is required',
             'testimonials_name.unique' => 'Name already exists',

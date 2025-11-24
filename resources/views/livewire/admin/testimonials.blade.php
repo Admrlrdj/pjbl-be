@@ -42,6 +42,13 @@
                                                 class="text-danger mx-2">
                                                 <i class="dw dw-delete-3"></i>
                                             </a>
+                                            <button 
+    wire:click="toggleShowOnHome({{ $item->id }})"
+    class="btn btn-sm {{ $item->show_on_home ? 'btn-success' : 'btn-secondary' }}"
+>
+    {{ $item->show_on_home ? 'Shown on Home' : 'Hide on Home' }}
+</button>
+
                                         </div>
                                     </td>
                                 </tr>
@@ -83,14 +90,20 @@
                             <span class="text-danger ml-1">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="">Rating</label>
-                        <input type="number" class="form-control" wire:model="testimonial_rating"
-                            placeholder="Enter Rating">
-                        @error('testimonial_rating')
-                            <span class="text-danger ml-1">{{ $message }}</span>
-                        @enderror
-                    </div>
+    
+                   <div class="form-group">
+    <label for="">Rating</label>
+    <select class="form-control" wire:model="testimonial_rating">
+        <option value="">Pilih Rating</option>
+        @foreach(range(1, 5) as $rating)
+            <option value="{{ $rating }}">{{ $rating }}</option>
+        @endforeach
+    </select>
+    
+    @error('testimonial_rating')
+        <span class="text-danger ml-1">{{ $message }}</span>
+    @enderror
+</div>
                     <div class="form-group">
                         <label for="">Comment</label>
                         <textarea class="form-control" wire:model="testimonial_comment" placeholder="Enter Comment" rows="3"></textarea>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Livewire\Admin\Testimonials;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
 
@@ -12,11 +13,12 @@ class HomeController extends Controller
 {
     public function index()
     {
+         $testimoniCount = Testimonial::where('rating', '>', 4)->count();
         // Stats
         $stats = [
-            ['value' => '103+', 'label' => 'Pelanggan Puas'],
+            ['value' => $testimoniCount . '+', 'label' => 'Pelanggan Puas'],
             ['value' => Product::count() . '+', 'label' => 'Varian Produk'],
-            ['value' => '100%', 'label' => 'Halal'],
+            ['value' => '✓', 'label' => 'Halal'],
         ];
 
         // Features
@@ -28,24 +30,26 @@ class HomeController extends Controller
         ];
 
         // Best Sellers (2 produk teratas berdasarkan ordering)
-        $bestSellers = Product::with('category')
-            ->orderBy('ordering', 'asc')
-            ->limit(2)
-            ->get()
-            ->map(function ($product) {
-                return [
-                    'id'          => $product->id,
-                    'name'        => $product->name,
-                    'description' => $product->description,
-                    'size'        => $product->size,
-                    'price'       => $product->price,
-                    'image'       => $product->image 
-                        ? asset('images/products/' . $product->image)
-                        : null,
-                    'slug'        => $product->slug,
-                    'category'    => $product->category->name ?? 'Uncategorized',
-                ];
-            });
+       $bestSellers = Product::with('category')
+    ->where('is_best_seller', true)
+    ->orderBy('ordering', 'asc')
+    ->take(2)
+    ->get()
+    ->map(function ($product) {
+        return [
+            'id'          => $product->id,
+            'name'        => $product->name,
+            'description' => \Illuminate\Support\Str::limit($product->description, 60),
+            'size'        => $product->size,
+            'price'       => $product->formatted_price,
+            'image'       => $product->image 
+                ? asset('images/products/' . $product->image)
+                : null,
+            'slug'        => $product->slug,
+            'category'    => $product->category->name ?? 'Uncategorized',
+            'category_id' => $product->category_id,
+        ];
+    });
 
         // All products (untuk katalog)
         $products = Product::with('category')
@@ -67,6 +71,7 @@ class HomeController extends Controller
                 ];
             });
 
+
         // Categories
         $categories = Category::with('products')
             ->orderBy('ordering', 'asc')
@@ -80,11 +85,13 @@ class HomeController extends Controller
                 ];
             });
 
-        // Testimonials (static)
+        
        $testimonials = Testimonial::orderBy('id', 'asc')->take(3)->get();
-
+       $testimonials = Testimonial::where('show_on_home', true)->get();
+         $location = Location::first();
         // Contact info
         $contact = [
+
             'whatsapp'      => '+62 819-3611-0396',
             'whatsapp_url'  => 'https://wa.me/6281936110396',
             'email'         => 'nastiticahayagemilang@gmail.com',
@@ -92,9 +99,11 @@ class HomeController extends Controller
             'instagram_url' => 'https://instagram.com/danggedang_official',
             'alamat'       => 'Taman Cimanggu, Kota Bogor, Jawa Barat',
             'toko_offline'  => 'Botani Square, Bogor',
-            'maps_url'      => 'https://www.google.com/maps/place/Bogor,+West+Java',
-            'maps_embed'    => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.60503526016!2d106.72311!3d-6.597147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c5d2e602b5e3%3A0x25a12f0f97fac4ee!2sBogor%2C%20West%20Java!5e0!3m2!1sen!2sid!4v1234567890',
+            'maps_url'      => $location?->maps_url ?? 'https://www.google.com/maps/place/Bogor,+West+Java',
+    'maps_embed'    => $location?->maps_embed ?? 'https://www.google.com/maps/embed?...',
         ];
+       
+
 
         return view('home', compact(
             'stats',
@@ -112,44 +121,28 @@ class HomeController extends Controller
         return view('our-story', ['pageTitle' => 'Our Story - Nounoufood']);
     }
 
-    public function faq()
-    {
-        $pageTitle = 'FAQ - Nounoufood';
+   public function faq()
+{
+    $pageTitle = 'FAQ - Nounoufood';
 
-        $faqs = [
-            ['question' => 'Apakah produk Nounoufood halal?', 'answer' => 'Ya, semua produk Nounoufood dijamin halal dan menggunakan bahan-bahan berkualitas yang aman dikonsumsi.'],
-            ['question' => 'Bagaimana cara memesan produk?', 'answer' => 'Anda bisa memesan melalui WhatsApp di nomor +62 819-3681-0305 atau langsung datang ke lokasi kami.'],
-            ['question' => 'Apakah ada minimum order?', 'answer' => 'Tidak ada minimum order.'],
-            ['question' => 'Berapa lama waktu pengiriman?', 'answer' => 'Untuk wilayah Bogor, pengiriman biasanya 1–2 hari kerja.'],
-            ['question' => 'Apakah bisa menjadi reseller?', 'answer' => 'Tentu! Kami membuka kesempatan untuk mitra dan reseller.'],
-            ['question' => 'Bagaimana cara penyimpanan produk?', 'answer' => 'Frozen simpan di freezer, snack kering simpan di tempat kering tertutup.'],
-        ];
+    $faqs = \App\Models\FAQ::orderBy('id', 'asc')->get();
 
-        return view('faq', compact('pageTitle', 'faqs'));
-    }
+    return view('faq', compact('pageTitle', 'faqs'));
+}
 
     public function contact()
     {
         $pageTitle = 'Contact Us - Nounoufood';
 
         $contact = [
-            'whatsapp'      => '+62 819-3681-0305',
-            'whatsapp_url'  => 'https://wa.me/6281936810305',
-            'email'         => 'hastikatrianggrainiis@gmail.com',
-            'instagram'     => '@nounoufood',
-            'instagram_url' => 'https://instagram.com/nounoufood',
-            'address'       => 'Jl.Hman Dremayu Kota Bogor, Jawa Barat',
-            'table_office'  => 'Jl.Bank Syariah Bogor',
-            'maps_url'      => 'https://www.google.com/maps/place/Bogor,+West+Java',
-            'maps_embed'    => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.60503526016!2d106.72311!3d-6.597147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c5d2e602b5e3%3A0x25a12f0f97fac4ee!2sBogor%2C%20West%20Java!5e0!3m2!1sen!2sid!4v1234567890',
+          
         ];
 
         return view('contact', compact('pageTitle', 'contact'));
     }
 
     public function productDetail($slug)
-    {
-        return view('product-detail');
+    {   
         
         // Produk detail tanpa images[]
         $product = Product::with('category')->where('slug', $slug)->firstOrFail();
@@ -166,35 +159,48 @@ class HomeController extends Controller
 
         return view('product-detail', compact('pageTitle', 'product', 'relatedProducts'));
     }
+     
+   // ... namespace dan use statements
 
-    public function productsByCategory($categorySlug)
+public function productsByCategory($categorySlug)
     {
         $category = Category::where('slug', $categorySlug)->firstOrFail();
 
         $products = Product::with('category')
             ->where('category_id', $category->id)
             ->orderBy('ordering', 'asc')
-            ->get();
+            ->paginate(12)
+            ->through(function ($product) {
+       
+                return [
+                    'id'          => $product->id,
+                    'name'        => $product->name,
+                    'slug'        => $product->slug,
+                    'description' => \Illuminate\Support\Str::limit($product->description, 60),
+                    'price'       => $product->formatted_price, 
+                    'image'       => $product->image 
+                                     ? asset('images/products/' . $product->image) 
+                                     : 'https://placehold.co/400x300', 
+                    'category'    => $product->category,
+                ];
+            });
 
         $categories = Category::with('products')
             ->orderBy('ordering', 'asc')
             ->get();
 
-        return view('products-by-category', [
-            'pageTitle' => $category->name . ' - Nounoufood',
-            'category'  => $category,
-            'products'  => $products,
-            'categories'=> $categories,
+        return view('catalog', [
+            'pageTitle'   => $category->name . ' - Nounoufood',
+            'category'    => $category,
+            'products'    => $products,
+            'categories'  => $categories,
+            'currentSlug' => $categorySlug
         ]);
     }
 
     public function allProducts(Request $request)
     {
         $query = Product::with('category');
-
-        if ($request->category) {
-            $query->where('category_id', $request->category);
-        }
 
         if ($request->search) {
             $query->where(function ($q) use ($request) {
@@ -203,14 +209,30 @@ class HomeController extends Controller
             });
         }
 
-        $products = $query->orderBy('ordering', 'asc')->paginate(12);
+        $products = $query->orderBy('ordering', 'asc')
+            ->paginate(12)
+            ->through(function ($product) {
+                // Transformasi data yang sama
+                return [
+                    'id'          => $product->id,
+                    'name'        => $product->name,
+                    'slug'        => $product->slug,
+                    'description' => \Illuminate\Support\Str::limit($product->description, 60),
+                    'price'       => $product->formatted_price,
+                    'image'       => $product->image 
+                                     ? asset('images/products/' . $product->image) 
+                                     : 'https://placehold.co/400x300',
+                    'category'    => $product->category,
+                ];
+            });
 
         $categories = Category::with('products')->orderBy('ordering', 'asc')->get();
 
-        return view('all-products', [
-            'pageTitle' => 'All Products - Nounoufood',
-            'products'  => $products,
-            'categories'=> $categories,
+        return view('catalog', [
+            'pageTitle'   => 'All Products - Nounoufood',
+            'products'    => $products,
+            'categories'  => $categories,
+            'currentSlug' => null
         ]);
     }
 }

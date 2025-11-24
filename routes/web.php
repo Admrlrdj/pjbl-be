@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -11,10 +12,11 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Static Pages
+// Dynamic Pages
 Route::get('/our-story', [HomeController::class, 'ourStory'])->name('our-story');
 Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::post('/contact/submit', [ContactController::class, 'store'])->name('contact.store');
 
 // Products
 Route::get('/products', [HomeController::class, 'allProducts'])->name('products.all');

@@ -12,6 +12,7 @@ class Products extends Component
 {
     use WithFileUploads;
     public $isUpdateProductMode = false;
+    public $is_best_seller = false;
     public $product_id,
         $product_name,
         $product_size,
@@ -72,6 +73,7 @@ class Products extends Component
         $product->name = $this->product_name;
         $product->size = $this->product_size;
         $product->price = $this->product_price;
+        $product->is_best_seller = $this->is_best_seller;
         $product->category_id = $this->product_category_id;
         $product->description = $this->product_description;
 
@@ -111,6 +113,7 @@ class Products extends Component
             $this->product_category_id = $product->category_id;
             $this->product_category_name = $product->category->name;
             $this->product_description = $product->description;
+            $this->is_best_seller = $product->is_best_seller;
             $this->old_image = $product->image; // <-- PERBAIKAN: Simpan nama file lama
             $this->image = null; // <-- PERBAIKAN: Pastikan input file baru kosong
             $this->isUpdateProductMode = true;
@@ -126,7 +129,6 @@ class Products extends Component
         $product = Product::findOrFail($this->product_id);
         $path = public_path('images/products/');
         $filename = $product->image; // Default ke nama file lama
-
         $this->validate([
             'product_name' => 'required|unique:products,name,' . $this->product_id,
             'product_size' => 'required',
@@ -175,6 +177,8 @@ class Products extends Component
         $product->image = $filename; // <-- Simpan nama file (lama atau baru)
         $product->slug = null;
         $updated = $product->save();
+        $product->is_best_seller = $this->is_best_seller;
+
 
         if ($updated) {
             $this->hideProductModalForm();
@@ -209,12 +213,56 @@ class Products extends Component
         $this->dispatch('showProductModalForm');
     }
 
+    public function toggleBestSeller($productId, $status)
+{
+    // Pastikan status adalah boolean
+    $status = filter_var($status, FILTER_VALIDATE_BOOLEAN);
+
+    // 1. Cek Batasan (Hanya jika sedang mencoba mengaktifkan / TRUE)
+    if ($status) {
+        $currentBestSellerCount = Product::where('is_best_seller', true)->count();
+        
+        if ($currentBestSellerCount >= 2) {
+            $this->dispatch('alert', [
+                'type' => 'error',
+                'message' => "Maksimal hanya 2 produk Best Seller yang diizinkan."
+            ]);
+            
+            // PENTING: Kembalikan checkbox ke posisi 'unchecked' di sisi user
+            // Tanpa ini, tombol visual akan terlihat 'aktif' padahal di database gagal.
+            $this->dispatch('refresh-component'); // Atau $this->render();
+            return; 
+        }
+    }
+
+    // 2. Eksekusi Update
+    $product = Product::find($productId);
+
+    if ($product) {
+        $product->update(['is_best_seller' => $status]);
+
+        $this->dispatch('showToastr', [
+            'type' => 'success',
+            'message' => $status ? 'Produk dijadikan Best Seller.' : 'Status Best Seller dicabut.'
+        ]);
+    } else {
+         $this->dispatch('alert', [
+            'type' => 'error',
+            'message' => "Produk tidak ditemukan."
+        ]);
+    }
+}
+
+
+
     public function hideProductModalForm()
     {
         $this->dispatch('hideProductModalForm');
         $this->isUpdateProductMode = false;
         $this->product_id = $this->product_name = null;
     }
+
+
 
     public function render()
     {

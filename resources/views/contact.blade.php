@@ -6,7 +6,7 @@
 <div class="w-full min-h-screen bg-white flex flex-col justify-center items-center px-4 gap-10 py-16">
     <h1 class="text-3xl font-bold">Contact Us</h1>
     <form 
-        action="#"
+        action="{{ route('contact.store') }}"
         method="POST"
         class="w-full max-w-4xl bg-white"
     >
@@ -19,6 +19,7 @@
                 <label class="font-semibold text-gray-700 text-lg">Name</label>
                 <input 
                     type="text"
+                    name="name"
                     placeholder="Full Name"
                     class="w-full h-12 px-4 mt-2 bg-white border border-gray-300 rounded-lg shadow-sm
                            focus:outline-none focus:ring-2 focus:ring-yellow-400"
@@ -30,6 +31,7 @@
                 <label class="font-semibold text-gray-700 text-lg">Phone Number</label>
                 <input 
                     type="text"
+                    name="phone"
                     placeholder="Phone Number"
                     class="w-full h-12 px-4 mt-2 bg-white border border-gray-300 rounded-lg shadow-sm
                            focus:outline-none focus:ring-2 focus:ring-yellow-400"
@@ -42,6 +44,7 @@
             <label class="font-semibold text-gray-700 text-lg">Email</label>
             <input 
                 type="email"
+                name="email"
                 placeholder="Email (xxx@email.com)"
                 class="w-full h-12 px-4 mt-2 bg-white border border-gray-300 rounded-lg shadow-sm
                        focus:outline-none focus:ring-2 focus:ring-yellow-400"
@@ -52,6 +55,7 @@
         <div class="mt-8">
             <label class="font-semibold text-gray-700 text-lg">Message (Critics and Suggestions)</label>
             <textarea
+                name="message"
                 rows="6"
                 placeholder="Messages containing criticism and suggestions..."
                 class="w-full px-4 py-3 mt-2 bg-white border border-gray-300 rounded-lg shadow-sm
@@ -63,8 +67,8 @@
         <div class="flex justify-center mt-12">
             <button
                 type="submit"
-                class="px-16 py-3 text-lg font-semibold text-gray-800 bg-white border border-yellow-400
-                       rounded-full shadow-md hover:bg-yellow-400 hover:text-white transition"
+                class="px-16 py-3 text-lg font-semibold text-gray-800 bg-white border-2 border-[#ffd700]
+                       rounded-full shadow-md hover:bg-yellow-400 hover:text-[#FFD700] transition"
             >
                 Submit
             </button>

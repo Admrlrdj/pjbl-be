@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet" />
     <!-- CSS -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/back/vendors/styles/core.css" />
     <link rel="stylesheet" type="text/css" href="/back/vendors/styles/icon-font.min.css" />
     <link rel="stylesheet" href="/extra-assets/ijabo/css/ijabo.min.css" />
@@ -172,15 +172,17 @@
                         </a>
                     </li>
                     <li>
-<<<<<<< HEAD
-                        <a href="{{ route('admin.testimonials') }}"
+                        <<<<<<< HEAD <<<<<<< HEAD <a href="{{ route('admin.testimonials') }}"
                             class="dropdown-toggle no-arrow {{ request()->routeIs('admin.testimonials') ? 'active' : '' }}">
-=======
-                        <a href="" class="dropdown-toggle no-arrow">
->>>>>>> ea4376c8d2f4da6640cf2a492ecf65283965919f
-                            <span class="micon bi bi-person"></span><span class="mtext">Testimonials</span>
-                            {{-- <i class="icon-copy bi bi-person"></i> --}}
-                        </a>
+                            =======
+                            <a href="" class="dropdown-toggle no-arrow">
+                                >>>>>>> ea4376c8d2f4da6640cf2a492ecf65283965919f
+                                =======
+                                <a href="{{ route('admin.testimonials') }}" class="dropdown-toggle no-arrow">
+                                    >>>>>>> aa1ebd2e1b65d2cb5c7f75a2c8e76f6bd77bd659
+                                    <span class="micon bi bi-person"></span><span class="mtext">Testimonials</span>
+                                    {{-- <i class="icon-copy bi bi-person"></i> --}}
+                                </a>
                     </li>
                     <li>
                         <a href="{{ route('admin.contact_us') }}"
@@ -197,15 +199,13 @@
                         </a>
                     </li>
                     <li>
-<<<<<<< HEAD
                         <a href="{{ route('admin.faqs') }}"
                             class="dropdown-toggle no-arrow {{ request()->routeIs('admin.faqs') ? 'active' : '' }}">
-=======
-                        <a href="" class="dropdown-toggle no-arrow">
->>>>>>> ea4376c8d2f4da6640cf2a492ecf65283965919f
-                            <span class="micon bi bi-question-circle"></span><span class="mtext">FAQ</span>
-                            {{-- <i class="icon-copy bi bi-question-circle"></i> --}}
-                        </a>
+                            <a href="" class="dropdown-toggle no-arrow">
+                                <a href="{{ route('admin.faqs') }}" class="dropdown-toggle no-arrow">
+                                    <span class="micon bi bi-question-circle"></span><span class="mtext">FAQ</span>
+                                    {{-- <i class="icon-copy bi bi-question-circle"></i> --}}
+                                </a>
                     </li>
                 </ul>
             </div>
