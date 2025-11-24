@@ -42,7 +42,7 @@
                             @empty
                                 <tr>
                                     <td colspan="5" class="text-center">
-                                        No Contact Us Found.
+                                        No FAQ Found.
                                     </td>
                                 </tr>
                             @endforelse
