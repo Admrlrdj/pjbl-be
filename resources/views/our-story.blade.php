@@ -32,16 +32,9 @@
   </div>
 
 </section>
-
-{{-- BAGIAN MARQUEE (Dibiarkan Full Width agar estetik) --}}
-<section>
+  <section>
   <div class="bg-[#FFE34F] py-2 overflow-hidden whitespace-nowrap mb-10">
-    <div id="infinite-marquee" class="flex w-max animate-loop-scroll"> @for ($i = 0; $i < 4; $i++)
-            <span class="text-xl font-semibold text-gray-800 tracking-wider flex items-center mx-10">
-                <img src="/images/pisang.png" class="w-14 h-14 mr-5" alt="">
-                Follow Instagram kami <a href="https://instagram.com/danggedang_official" target="_blank" class="hover:underline"> @danggedang_official</a>
-            </span>
-        @endfor
+    <div id="infinite-marquee" class="flex">
         @for ($i = 0; $i < 4; $i++)
             <span class="text-xl font-semibold text-gray-800 tracking-wider flex items-center mx-10">
                 <img src="/images/pisang.png" class="w-14 h-14 mr-5" alt="">
@@ -49,23 +42,23 @@
             </span>
         @endfor
     </div>
-  </div>
+</div>
+<div class="w-full overflow-hidden pb-5">
+    <div class="marquee-container">
+        <div class="marquee-track">
+            <!-- Loop 1 -->
+            <img src="/images/Gradient.png" class="marquee-img" />
+            <img src="/images/Gradient2.png" class="marquee-img" />
+            <img src="/images/Gradient3.png" class="marquee-img" />
+            <img src="/images/Gradient.png" class="marquee-img" />
 
-  <div class="w-full overflow-hidden pb-5">
-    <div class="flex w-max animate-loop-scroll">
-        <div class="flex px-4">
-             <img src="/images/Gradient.png" class="md:w-[400px] md:h-[300px] w-[300px] h-[200px] rounded-xl object-cover mx-4 shadow-lg" />
-             <img src="/images/Gradient2.png" class="md:w-[400px] md:h-[300px] w-[300px] h-[200px] rounded-xl object-cover mx-4 shadow-lg" />
-             <img src="/images/Gradient3.png" class="md:w-[400px] md:h-[300px] w-[300px] h-[200px] rounded-xl object-cover mx-4 shadow-lg" />
-             <img src="/images/Gradient.png" class="md:w-[400px] md:h-[300px] w-[300px] h-[200px] rounded-xl object-cover mx-4 shadow-lg" />
-        </div>
-        <div class="flex px-4" aria-hidden="true">
-             <img src="/images/Gradient.png" class="md:w-[400px] md:h-[300px] w-[300px] h-[200px] rounded-xl object-cover mx-4 shadow-lg" />
-             <img src="/images/Gradient2.png" class="md:w-[400px] md:h-[300px] w-[300px] h-[200px] rounded-xl object-cover mx-4 shadow-lg" />
-             <img src="/images/Gradient3.png" class="md:w-[400px] md:h-[300px] w-[300px] h-[200px] rounded-xl object-cover mx-4 shadow-lg" />
-             <img src="/images/Gradient.png" class="md:w-[400px] md:h-[300px] w-[300px] h-[200px] rounded-xl object-cover mx-4 shadow-lg" />
+            <!-- Loop 2 (duplicate) -->
+            <img src="/images/Gradient.png" class="marquee-img" />
+            <img src="/images/Gradient2.png" class="marquee-img" />
+            <img src="/images/Gradient3.png" class="marquee-img" />
+            <img src="/images/Gradient.png" class="marquee-img" />
         </div>
     </div>
-  </div>
+</div>
 </section>
 @endsection
