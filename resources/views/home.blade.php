@@ -5,56 +5,44 @@
 @section('content')
 
 <!-- Hero Section -->
-<section class="py-16 lg:w-[90%] mx-auto">
-    <div class="container mx-auto px-4">
+<section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="flex md:flex-row flex-col gap-8 lg:gap-16 items-center">
         
-        <!-- Grid 2 kolom -->
-        <div class="flex md:flex-row flex-col gap-8">
-            
-            <div class="flex justify-center lg:justify-center lg:w-1/2">
-                <div class="relative logo-blob w-[300px] h-[260px] md:w-[490px] md:h-[435px]">
-
-                    <div class="blob-bg absolute inset-0"></div>
-
-                    <div class="badge-image absolute inset-0"></div>
-                </div>
+        <div class="w-full md:w-1/2 flex justify-center">
+            <div class="relative logo-blob w-[300px] h-[260px] md:w-[490px] md:h-[435px]">
+                <div class="blob-bg absolute inset-0"></div>
+                <div class="badge-image absolute inset-0"></div>
             </div>
+        </div>
 
-            <!-- RIGHT TEXT -->
-            <div class="text-center md:text-left md:w-1/2 flex flex-col justify-center">
-                
-                <!-- Title -->
-               <h1 class="lg:text-5xl md:text-4xl text-3xl font-semibold mb-2 text-left">
-    Nounoufood pasti enaknya.
-</h1>
+        <div class="w-full md:w-1/2 flex flex-col justify-center text-left">
+            
+            <h1 class="lg:text-5xl md:text-4xl text-3xl font-bold mb-4 text-gray-900 leading-tight">
+                Nounoufood pasti enaknya.
+            </h1>
 
-<p class="lg:mt-4 mt-2 lg:text-lg md:text-md text-left">
-    Jangan Ragu, dijamin ketagihan! temukan cemilan, makanan, dan minuman dengan rasa yang autentik yang selalu bikin harimu bersemangat!
-</p>
+            <p class="text-gray-600 lg:text-lg md:text-md leading-relaxed mb-8">
+                Jangan Ragu, dijamin ketagihan! temukan cemilan, makanan, dan minuman dengan rasa yang autentik yang selalu bikin harimu bersemangat!
+            </p>
 
-                <!-- Stats -->
-                <div class="flex md:flex-row flex-col gap-4 mt-4 items-center">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
                 @foreach($stats as $stat)
-                <div class="md:w-[200px] min-h-10 w-full border-4 flex flex-col items-center justify-center border-[#FFD700] gap-2 rounded-2xl text-center py-6 px-2 shadow-md">
-        
-                    <h3 class="text-3xl text-[#FFD700] font-bold">
+                <div class="w-full border-[3px] border-[#FFD700] rounded-2xl flex flex-col items-center justify-center py-4 px-2 shadow-sm hover:shadow-md transition-shadow bg-white">
+                    <h3 class="text-3xl md:text-4xl text-[#FFD700] font-bold">
                         {{ $stat['value'] }}
                     </h3>
-
-                    <p class="text-md font-semibold">
+                    <p class="text-sm md:text-base font-semibold text-gray-700 mt-1">
                         {{ $stat['label'] }}
                     </p>
-                    </div>
-                @endforeach
                 </div>
-
+                @endforeach
             </div>
 
         </div>
 
     </div>
 </section>
-
 
 <!-- Features Section -->
 <section class="py-16 bg-white md:w-[]">
@@ -190,7 +178,7 @@
                               text-xs sm:text-sm transition-all duration-300 gap-2
                               {{ (isset($currentSlug) && $currentSlug == $cat['slug']) 
                                  ? 'bg-orange-400 text-white shadow-md' 
-                                 : 'bg-white text-zinc-800 hover:bg-orange-400 hover:text-white' }}">
+                                 : 'bg-white text-zinc-800 hover:bg-orange-400 hover:text-[#FB9E3A]' }}">
                         
                         <i class="fas fa-cookie text-xs sm:text-sm"></i>
                         <span>{{ $cat['name'] }}</span>
