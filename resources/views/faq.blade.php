@@ -17,8 +17,8 @@
     
     <div class="md:max-w-3xl w-[90%]  mx-auto my-10">
     @foreach ($faqs as $faq)
-    <div class="bg-[#FFD700] shadow-md border-b-2 border-[#FFD700] overflow-hidden">
-      <button class="accordion-header w-full px-6 py-3 flex justify-between items-center transition-all bg-[#FFD700] duration-300">
+    <div class="bg-[#FFE34F] shadow-md border-b-2 border-[#FFD700] overflow-hidden">
+      <button class="accordion-header w-full px-6 py-3 flex justify-between items-center transition-all bg-[#FFE34F] duration-300">
           <span class="text-lg font-semibold text-zinc-800">{{ $faq->question }}</span>
           <span class="icon text-2xl font-bold text-amber-600">+</span>
       </button>
