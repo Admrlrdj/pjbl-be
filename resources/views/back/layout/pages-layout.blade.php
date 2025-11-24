@@ -139,9 +139,9 @@
         <div class="brand-logo">
             <a href="/">
                 <img src="/images/site/{{ isset(settings()->site_logo) ? settings()->site_logo : '' }}" alt=""
-                    class="dark-logo site_logo" />
+                    class="dark-logo site_logo" style="margin-left: 20px; width: auto;" />
                 <img src="/images/site/{{ isset(settings()->site_logo) ? settings()->site_logo : '' }}" alt=""
-                    class="light-logo site_logo" />
+                    class="light-logo site_logo" style="margin-left: 20px; width: auto;" />
             </a>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>
@@ -160,52 +160,50 @@
                     <li>
                         <a href="{{ route('admin.products') }}"
                             class="dropdown-toggle no-arrow {{ request()->routeIs('admin.products') ? 'active' : '' }}">
-                            <span class="micon bi bi-box-seam"></span><span class="mtext">Products</span>
+                            <span class="micon bi bi-box-seam"></span>
+                            <span class="mtext">Products</span>
                             {{-- <i class="icon-copy bi bi-box-seam"></i> --}}
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('admin.categories') }}"
                             class="dropdown-toggle no-arrow {{ request()->routeIs('admin.categories') ? 'active' : '' }}">
-                            <span class="micon bi bi-grid"></span><span class="mtext">Categories</span>
+                            <span class="micon bi bi-grid"></span>
+                            <span class="mtext">Categories</span>
                             {{-- <i class="icon-copy bi bi-grid"></i> --}}
                         </a>
                     </li>
                     <li>
-                        <<<<<<< HEAD <<<<<<< HEAD <a href="{{ route('admin.testimonials') }}"
+                        <a href="{{ route('admin.testimonials') }}"
                             class="dropdown-toggle no-arrow {{ request()->routeIs('admin.testimonials') ? 'active' : '' }}">
-                            =======
-                            <a href="" class="dropdown-toggle no-arrow">
-                                >>>>>>> ea4376c8d2f4da6640cf2a492ecf65283965919f
-                                =======
-                                <a href="{{ route('admin.testimonials') }}" class="dropdown-toggle no-arrow">
-                                    >>>>>>> aa1ebd2e1b65d2cb5c7f75a2c8e76f6bd77bd659
-                                    <span class="micon bi bi-person"></span><span class="mtext">Testimonials</span>
-                                    {{-- <i class="icon-copy bi bi-person"></i> --}}
-                                </a>
+                            <span class="micon bi bi-person"></span>
+                            <span class="mtext">Testimonials</span>
+                            {{-- <i class="icon-copy bi bi-person"></i> --}}
+                        </a>
                     </li>
                     <li>
                         <a href="{{ route('admin.contact_us') }}"
                             class="dropdown-toggle no-arrow {{ request()->routeIs('admin.contact_us') ? 'active' : '' }}">
-                            <span class="micon bi bi-chat-right-dots"></span><span class="mtext">Contacts</span>
+                            <span class="micon bi bi-chat-right-dots">
+                            </span><span class="mtext">Contacts</span>
                             {{-- <i class="icon-copy bi bi-chat-right-dots"></i> --}}
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('admin.locations') }}"
                             class="dropdown-toggle no-arrow {{ request()->routeIs('admin.locations') ? 'active' : '' }}">
-                            <span class="micon bi bi-map"></span><span class="mtext">Locations</span>
+                            <span class="micon bi bi-map"></span>
+                            <span class="mtext">Locations</span>
                             {{-- <i class="icon-copy bi bi-map"></i> --}}
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('admin.faqs') }}"
                             class="dropdown-toggle no-arrow {{ request()->routeIs('admin.faqs') ? 'active' : '' }}">
-                            <a href="" class="dropdown-toggle no-arrow">
-                                <a href="{{ route('admin.faqs') }}" class="dropdown-toggle no-arrow">
-                                    <span class="micon bi bi-question-circle"></span><span class="mtext">FAQ</span>
-                                    {{-- <i class="icon-copy bi bi-question-circle"></i> --}}
-                                </a>
+                            <span class="micon bi bi-question-circle"></span>
+                            <span class="mtext">FAQ</span>
+                            {{-- <i class="icon-copy bi bi-question-circle"></i> --}}
+                        </a>
                     </li>
                 </ul>
             </div>

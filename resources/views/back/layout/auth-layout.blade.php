@@ -44,6 +44,8 @@
             <div class="row align-items-center">
                 <div class="col-md-6 col-lg-7">
                     {{-- <img src="/back/vendors/images/login-page-img.png" alt="" /> --}}
+                    {{-- Logo Pisang ditambahkan di sini --}}
+                    <img src="/images/hero-logo.png" alt="Logo Danggedang" style="max-width: 100%; height: auto;" />
                 </div>
                 <div class="col-md-6 col-lg-5">
                     @yield('content')
@@ -51,7 +53,6 @@
             </div>
         </div>
     </div>
-    <!-- js -->
     <script src="/back/vendors/scripts/core.js"></script>
     <script src="/back/vendors/scripts/script.min.js"></script>
     <script src="/back/vendors/scripts/process.js"></script>
