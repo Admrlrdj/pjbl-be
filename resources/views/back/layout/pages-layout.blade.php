@@ -28,6 +28,19 @@
     <link rel="stylesheet" href="/extra-assets/jquery-ui-1.14.1/jquery-ui.min.css" />
     <link rel="stylesheet" href="/extra-assets/jquery-ui-1.14.1/jquery-ui.structure.min.css" />
     <link rel="stylesheet" href="/extra-assets/jquery-ui-1.14.1/jquery-ui.theme.min.css" />
+
+    <style>
+        .left-side-bar .menu-block .sidebar-menu ul li a:hover,
+        .left-side-bar .menu-block .sidebar-menu ul li a.active {
+            background-color: #ffc107 !important;
+            color: #ffffff !important;
+        }
+
+        .left-side-bar .menu-block .sidebar-menu ul li a:hover .micon,
+        .left-side-bar .menu-block .sidebar-menu ul li a.active .micon {
+            color: #ffffff !important;
+        }
+    </style>
     @kropifyStyles
     @stack('stylesheets')
 </head>
