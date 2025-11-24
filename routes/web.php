@@ -3,10 +3,25 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Static Pages
+Route::get('/our-story', [HomeController::class, 'ourStory'])->name('our-story');
+Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+
+// Products
+Route::get('/products', [HomeController::class, 'allProducts'])->name('products.all');
+Route::get('/products/{slug}', [HomeController::class, 'productDetail'])->name('product.detail');
+Route::get('/category/{slug}', [HomeController::class, 'productsByCategory'])->name('products.category');
+Route::get('/search', [HomeController::class, 'searchProducts'])->name('products.search');
+
 
 // Development Routes
 Route::view('/example-page', 'example-page');
