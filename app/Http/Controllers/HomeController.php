@@ -15,11 +15,23 @@ class HomeController extends Controller
     {
          $testimoniCount = Testimonial::where('rating', '>', 4)->count();
         // Stats
-        $stats = [
-            ['value' => $testimoniCount . '+', 'label' => 'Pelanggan Puas'],
-            ['value' => Product::count() . '+', 'label' => 'Varian Produk'],
-            ['value' => '✓', 'label' => 'Halal'],
-        ];
+       $stats = [
+        [
+            'value' => $testimoniCount . '+', 
+            'label' => 'Pelanggan Puas', 
+            'modal_target' => null 
+        ],
+        [
+            'value' => Product::count() . '+', 
+            'label' => 'Varian Produk', 
+            'modal_target' => null  
+        ],
+        [
+            'value' => '✓', 
+            'label' => 'Halal', 
+            'modal_target' => 'halal-modal' // ID Modal target
+        ],
+    ];
 
         // Features
         $features = [

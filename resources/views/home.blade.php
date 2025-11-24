@@ -26,22 +26,92 @@
                 Jangan Ragu, dijamin ketagihan! temukan cemilan, makanan, dan minuman dengan rasa yang autentik yang selalu bikin harimu bersemangat!
             </p>
 
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
-                @foreach($stats as $stat)
-                <div class="w-full border-[3px] border-[#FFD700] rounded-2xl flex flex-col items-center justify-center py-4 px-2 shadow-sm hover:shadow-md transition-shadow bg-white">
-                    <h3 class="text-3xl md:text-4xl text-[#FFD700] font-bold">
-                        {{ $stat['value'] }}
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
+    @foreach($stats as $stat)
+        @if($stat['modal_target'])
+            <button onclick="toggleModal('{{ $stat['modal_target'] }}')"
+               class="w-full border-[3px] border-[#FFD700] rounded-2xl flex flex-col items-center justify-center py-4 px-2 shadow-sm hover:shadow-md hover:bg-yellow-50 transition-all bg-white cursor-pointer group">
+                <h3 class="text-3xl md:text-4xl text-[#FFD700] font-bold group-hover:scale-110 transition-transform">
+                    {{ $stat['value'] }}
+                </h3>
+                <p class="text-sm md:text-base font-semibold text-gray-700 mt-1">
+                    {{ $stat['label'] }} <span class="text-xs text-blue-500 block">(Lihat Sertifikat)</span>
+                </p>
+            </button>
+        @else
+            {{-- Item Statistik Biasa (Div statis) --}}
+            <div class="w-full border-[3px] border-[#FFD700] rounded-2xl flex flex-col items-center justify-center py-4 px-2 shadow-sm bg-white">
+                <h3 class="text-3xl md:text-4xl text-[#FFD700] font-bold">
+                    {{ $stat['value'] }}
+                </h3>
+                <p class="text-sm md:text-base font-semibold text-gray-700 mt-1">
+                    {{ $stat['label'] }}
+                </p>
+            </div>
+        @endif
+    @endforeach
+</div>
+<!--Modal halal--->
+<div id="halal-modal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    
+    <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" onclick="toggleModal('halal-modal')"></div>
+
+    <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+        
+        <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg border-t-8 border-[#FFD700]">
+            
+            <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                
+                <div class="w-full">
+                    <h3 class="text-2xl font-bold leading-6 text-gray-900 mb-2" id="modal-title">
+                        Dokumen Sertifikasi Halal
                     </h3>
-                    <p class="text-sm md:text-base font-semibold text-gray-700 mt-1">
-                        {{ $stat['label'] }}
+                    <div class="h-1 w-20 bg-[#FFD700] rounded mb-4"></div> <p class="text-sm text-gray-500 mb-6">
+                        Nounoufood berkomitmen menjaga kehalalan produk. Berikut adalah dokumen resmi sertifikasi kami yang dapat Anda unduh atau lihat:
                     </p>
+                    
+                    <div class="flex flex-col gap-3">
+                        @php
+                            // Sesuaikan 'filename' dengan nama file asli di folder public/sertifikat_halal Anda
+                            $documents = [
+                                ['label' => 'Sertifikat Halal Utama', 'filename' => 'halaldanggedang.pdf'],
+                                ['label' => 'Sertifikat Halal Minuman', 'filename' => 'halalminuman.pdf'],
+                                ['label' => 'Sertifikat Halal Keripik', 'filename' => 'halalkeripik.pdf'],
+                            
+                            ];
+                        @endphp
+
+                        @foreach($documents as $doc)
+                            {{-- Fungsi asset() otomatis mengarah ke folder public --}}
+                            <a href="{{ asset('sertifikat_halal/' . $doc['filename']) }}" 
+                               target="_blank" 
+                               class="flex items-center justify-between p-4 rounded-xl border border-gray-200 hover:bg-[#FFE34F]/20 hover:border-[#FFD700] transition-all group">
+                                
+                                <div class="flex items-center gap-4">
+                                    <div class="bg-red-50 p-2 rounded-lg">
+                                        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <span class="text-sm font-bold text-gray-800 group-hover:text-black block">{{ $doc['label'] }}</span>
+                                        <!-- <span class="text-xs text-gray-400 font-mono">{{ $doc['filename'] }}</span> -->
+                                    </div>
+                                </div>
+
+                                <svg class="w-5 h-5 text-gray-300 group-hover:text-[#FFD700] transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            </a>
+                        @endforeach
+                    </div>
                 </div>
-                @endforeach
             </div>
 
+            <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 border-t border-gray-100">
+                <button type="button" class="mt-3 inline-flex w-full justify-center rounded-lg bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-100 sm:mt-0 sm:w-auto transition-colors" onclick="toggleModal('halal-modal')">
+                    Tutup
+                </button>
+            </div>
         </div>
-
     </div>
+</div>
 </section>
 
 <!-- Features Section -->
@@ -419,7 +489,7 @@
         ? 'bg-[#FB9E3A] rounded-[20px] border-2 border-gray-200 p-6 text-[#ffd700]'
         : 'bg-white rounded-[10px] border-2 border-gray-200 p-6 mt-10'
     }}
-" data-index="{{ $index }}">
+"data-index="{{ $index }}">
                         <div class="self-stretch flex flex-col justify-start items-center gap-3.5">
                             <div class="self-stretch flex flex-col justify-start items-center gap-2.5">
                                 <!-- Quote Icon -->
