@@ -77,7 +77,6 @@
                                 ['label' => 'Sertifikat Halal Utama', 'filename' => 'halaldanggedang.pdf'],
                                 ['label' => 'Sertifikat Halal Minuman', 'filename' => 'halalminuman.pdf'],
                                 ['label' => 'Sertifikat Halal Keripik', 'filename' => 'halalkeripik.pdf'],
-                            
                             ];
                         @endphp
 
@@ -236,7 +235,7 @@
                           text-xs sm:text-sm transition-all duration-300 gap-2
                           {{ request()->routeIs('products.all') 
                              ? 'bg-orange-400 text-white shadow-md' 
-                             : 'bg-white text-zinc-800 hover:bg-[#FB9E3A] hover:text-white' }}">
+                             : 'bg-white text-zinc-800 hover:bg-[#FB9E3A] hover:text-[#FB9E3A]' }}">
                     <i class="fas fa-th text-xs sm:text-sm"></i> 
                     <span>Semua Produk</span>
                 </a>
