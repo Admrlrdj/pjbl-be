@@ -40,56 +40,92 @@
   </div>
 
   <!-- Product Recommended -->
-  <div class="w-full py-3">
+ <div class="w-full py-3" x-data="{ current: 0 }">
     <h1 class="md:text-4xl text-3xl font-semibold text-center mb-5">Product Recommended</h1>
 
     <div class="border-t-4 border-[#FFD700] mb-10"></div>
 
-    <div class="w-full flex gap-5 flex-col md:flex-row">
+    <!-- Wrapper Slider -->
+    <div class="relative overflow-hidden">
 
-      @foreach($relatedProducts as $related)
-      <div class="lg:w-1/2 w-full rounded-2xl border-4 border-[#FFD700] flex lg:flex-row flex-col p-3 gap-4">
+        <!-- Slider Items -->
+        <div class="flex transition-transform duration-500"
+             :style="'transform: translateX(-' + (current * 100) + '%)'">
 
-        <img 
-          src="{{ asset('images/products/' . $related->image) }}" 
-          alt="{{ $related->name }}" 
-          class="lg:w-2/5 w-full object-cover object-center rounded-xl lg:max-h-40 max-h-[180px]">
+            @foreach($relatedProducts as $related)
+            <div class="min-w-full px-4">
+                <div class="rounded-2xl border-4 border-[#FFD700] flex lg:flex-row flex-col p-3 gap-4">
 
-        <div class="flex flex-col items-start lg:w-3/5 w-full">
+                    <img 
+                        src="{{ asset('images/products/' . $related->image) }}"
+                        alt="{{ $related->name }}"
+                        class="lg:w-2/5 w-full object-cover object-center rounded-xl lg:max-h-40 max-h-[180px]">
 
-          <h1 class="text-xl font-semibold mb-2">{{ $related->name }}</h1>
+                    <div class="flex flex-col items-start lg:w-3/5 w-full">
 
-          <p class="line-clamp-2 text-[#2c2c2c] text-sm mb-4">
-            {{ $related->description }}
-          </p>
+                        <h1 class="text-xl font-semibold mb-2">{{ $related->name }}</h1>
 
-          <p class="text-lg font-semibold">
-            Rp{{ number_format($related->price, 0, ',', '.') }}
-          </p>
+                        <p class="line-clamp-2 text-[#2c2c2c] text-sm mb-4">
+                            {{ $related->description }}
+                        </p>
 
-          <div class="flex items-start gap-3 mt-2">
+                        <p class="text-lg font-semibold">
+                            Rp{{ number_format($related->price, 0, ',', '.') }}
+                        </p>
 
-            <a 
-              href="https://wa.me/6281936810305?text=Halo, saya ingin memesan {{ $related->name }}"
-              class="px-8 py-0.5 text-lg font-semibold text-gray-800 bg-white border-yellow-400 rounded-xl border-2 shadow-md hover:bg-yellow-400 hover:text-[#FFD700] transition">
-              Buy
-            </a>
+                        <div class="flex items-start gap-3 mt-2">
 
-            <a 
-              href="{{ route('product.detail', $related->slug) }}"
-              class="px-8 py-0.5 text-lg font-semibold text-gray-800 bg-white border-yellow-400 rounded-xl border-2 shadow-md hover:bg-[#FFAE00] hover:text-[#FFD700] transition">
-              Detail
-            </a>
+                            <a 
+                                href="https://wa.me/6281936810305?text=Halo, saya ingin memesan {{ $related->name }}"
+                                class="px-8 py-0.5 text-lg font-semibold text-gray-800 bg-white border-yellow-400 rounded-xl border-2 shadow-md hover:bg-yellow-400 hover:text-[#FFD700] transition">
+                                Buy
+                            </a>
 
-          </div>
+                            <a 
+                                href="{{ route('product.detail', $related->slug) }}"
+                                class="px-8 py-0.5 text-lg font-semibold text-gray-800 bg-white border-yellow-400 rounded-xl border-2 shadow-md hover:bg-[#FFAE00] hover:text-[#FFD700] transition">
+                                Detail
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            @endforeach
 
         </div>
 
-      </div>
-      @endforeach
+        <!-- Navigation Buttons -->
+        <button 
+            x-show="current > 0" 
+            @click="current--"
+            class="absolute left-2 top-1/2 -translate-y-1/2 bg-[#FFD700] text-black px-3 py-1 rounded-full shadow">
+            ‹
+        </button>
+
+        <button 
+            x-show="current < {{ count($relatedProducts) - 1 }}" 
+            @click="current++"
+            class="absolute right-2 top-1/2 -translate-y-1/2 bg-[#FFD700] text-black px-3 py-1 rounded-full shadow">
+            ›
+        </button>
+
+        <!-- Dots -->
+        <div class="flex justify-center mt-4 gap-2">
+            @foreach($relatedProducts as $index => $p)
+                <div  
+                    class="w-3 h-3 rounded-full cursor-pointer"
+                    :class="current === {{ $index }} ? 'bg-[#FFD700]' : 'bg-gray-300'"
+                    @click="current = {{ $index }}">
+                </div>
+            @endforeach
+        </div>
 
     </div>
-  </div>
+
+</div>
 
 </section>
 @endsection

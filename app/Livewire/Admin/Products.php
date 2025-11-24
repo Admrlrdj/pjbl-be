@@ -135,7 +135,7 @@ class Products extends Component
             'product_price' => 'required|numeric',
             'product_category_id' => 'required|exists:categories,id',
             'product_description' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ], [
             'product_name.required' => 'Product Name is required',
             'product_name.unique' => 'Product Name already exists',
@@ -145,7 +145,6 @@ class Products extends Component
             'product_category_id.required' => 'Product Category is required',
             'product_category_id.exists' => 'Product Category does not exist',
             'product_description.required' => 'Product Description is required',
-            'image.required' => 'Product Image is required',
             'image.image' => 'The file must be an image',
             'image.mimes' => 'The image must be a file of type: jpeg, png, jpg',
             'image.max' => 'The image size must not exceed 2MB',

@@ -408,19 +408,18 @@
             </div>
 
         @elseif($totalTestimonials === 3)
-            {{-- Three Testimonials --}}
-           <div class="flex flex-wrap justify-center items-start gap-10">
+           <div class="flex flex-nowrap justify-center items-start gap-6 w-full">
                 @foreach($testimonials as $index => $t)
                     @php
                         $isCenter = $index === 1;
                     @endphp
 
-                    <div class="inline-flex flex-col justify-start items-center gap-3.5 w-96 transition-all duration-300 cursor-pointer testimonial-card
-                        {{ $isCenter 
-                            ? 'bg-[#FB9E3A] rounded-[20px] border-2 border-gray-200 p-6 text-[#ffd700]'
-                            : 'bg-white rounded-[10px] border-2 border-gray-200 p-6 mt-10'
-                        }}
-                    " data-index="{{ $index }}">
+                   <div class="flex flex-col flex-shrink-0 w-1/3 max-w-[28rem] justify-start items-center gap-3.5 transition-all duration-300 cursor-pointer testimonial-card
+    {{ $isCenter 
+        ? 'bg-[#FB9E3A] rounded-[20px] border-2 border-gray-200 p-6 text-[#ffd700]'
+        : 'bg-white rounded-[10px] border-2 border-gray-200 p-6 mt-10'
+    }}
+" data-index="{{ $index }}">
                         <div class="self-stretch flex flex-col justify-start items-center gap-3.5">
                             <div class="self-stretch flex flex-col justify-start items-center gap-2.5">
                                 <!-- Quote Icon -->
