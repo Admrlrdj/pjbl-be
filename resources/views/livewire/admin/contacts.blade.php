@@ -5,7 +5,7 @@
             <div class="pd-20 card-box mb-30">
                 <div class="clearfix">
                     <div class="pull-left">
-                        <h4 class="h4 text-yellow">All Contact Us</h4>
+                        <h4 class="h4 text-yellow">Semua Kontak</h4>
                     </div>
                     <div class="pull-right">
                         {{-- <a href="javascript:;" wire:click="addCategory()" class="btn btn-success btn-sm">+</a> --}}
@@ -15,10 +15,10 @@
                     <table class="table table-borderless table-striped table-sm">
                         <thead class="bg-secondary text-white">
                             <th>ID</th>
-                            <th>Name</th>
+                            <th>Nama</th>
                             <th>Email</th>
-                            <th>Message</th>
-                            <th>Action</th>
+                            <th>Pesan</th>
+                            <th>Aksi</th>
                         </thead>
                         <tbody id="sortable_categories">
                             @forelse ($contacts as $item)

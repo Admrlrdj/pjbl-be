@@ -5,7 +5,7 @@
             <div class="pd-20 card-box mb-30">
                 <div class="clearfix">
                     <div class="pull-left">
-                        <h4 class="h4 text-yellow">All FAQ</h4>
+                        <h4 class="h4 text-yellow">Semua FAQ</h4>
                     </div>
                     <div class="pull-right">
                         <a href="javascript:;" wire:click="addFAQ()" class="btn btn-success btn-sm">+</a>
@@ -15,9 +15,9 @@
                     <table class="table table-borderless table-striped table-sm">
                         <thead class="bg-secondary text-white">
                             <th>ID</th>
-                            <th>Questions</th>
-                            <th>Answers</th>
-                            <th>Action</th>
+                            <th>Pertanyaan</th>
+                            <th>Jawaban</th>
+                            <th>Aksi</th>
                         </thead>
                         <tbody id="sortable_categories">
                             @forelse ($faqs as $item)
@@ -70,14 +70,14 @@
                         <input type="hidden" wire:model="faq_id">
                     @endif
                     <div class="form-group">
-                        <label for="">Question</label>
+                        <label for="">Pertanyaan</label>
                         <input type="text" class="form-control" wire:model="question" placeholder="Enter Question">
                         @error('question')
                             <span class="text-danger ml-1">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">Answer</label>
+                        <label for="">Jawaban</label>
                         <input type="text" class="form-control" wire:model="answer" placeholder="Enter Answer">
                         @error('answer')
                             <span class="text-danger ml-1">{{ $message }}</span>

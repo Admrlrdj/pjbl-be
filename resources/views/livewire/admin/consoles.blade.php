@@ -6,7 +6,7 @@
                     <div class="widget-data">
                         <div class="weight-700 font-24 text-dark">{{ $totalProducts }}</div>
                         <div class="font-14 text-secondary weight-500">
-                            Products
+                            Produk
                         </div>
                     </div>
                     <div class="widget-icon">
@@ -23,7 +23,7 @@
                     <div class="widget-data">
                         <div class="weight-700 font-24 text-dark">{{ $totalTestimonials }}</div>
                         <div class="font-14 text-secondary weight-500">
-                            Testimonials
+                            Testimoni
                         </div>
                     </div>
                     <div class="widget-icon">
@@ -39,7 +39,7 @@
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
                         <div class="weight-700 font-24 text-dark">{{ $averageRatings }}</div>
-                        <div class="font-14 text-secondary weight-500">Ratings</div>
+                        <div class="font-14 text-secondary weight-500">Rating</div>
                     </div>
                     <div class="widget-icon">
                         <div class="icon" data-color="#FFD93D">
@@ -55,7 +55,7 @@
                     <div class="widget-data">
                         <div class="weight-700 font-24 text-dark">{{ $totalUsers }}</div>
                         <div class="font-14 text-secondary weight-500">
-                            Users
+                            User
                         </div>
                     </div>
                     <div class="widget-icon">

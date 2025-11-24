@@ -161,7 +161,7 @@
                         <a href="{{ route('admin.products') }}"
                             class="dropdown-toggle no-arrow {{ request()->routeIs('admin.products') ? 'active' : '' }}">
                             <span class="micon bi bi-box-seam"></span>
-                            <span class="mtext">Products</span>
+                            <span class="mtext">Produk</span>
                             {{-- <i class="icon-copy bi bi-box-seam"></i> --}}
                         </a>
                     </li>
@@ -169,7 +169,7 @@
                         <a href="{{ route('admin.categories') }}"
                             class="dropdown-toggle no-arrow {{ request()->routeIs('admin.categories') ? 'active' : '' }}">
                             <span class="micon bi bi-grid"></span>
-                            <span class="mtext">Categories</span>
+                            <span class="mtext">Kategori</span>
                             {{-- <i class="icon-copy bi bi-grid"></i> --}}
                         </a>
                     </li>
@@ -177,7 +177,7 @@
                         <a href="{{ route('admin.testimonials') }}"
                             class="dropdown-toggle no-arrow {{ request()->routeIs('admin.testimonials') ? 'active' : '' }}">
                             <span class="micon bi bi-person"></span>
-                            <span class="mtext">Testimonials</span>
+                            <span class="mtext">Testimoni</span>
                             {{-- <i class="icon-copy bi bi-person"></i> --}}
                         </a>
                     </li>
@@ -185,7 +185,7 @@
                         <a href="{{ route('admin.contact_us') }}"
                             class="dropdown-toggle no-arrow {{ request()->routeIs('admin.contact_us') ? 'active' : '' }}">
                             <span class="micon bi bi-chat-right-dots">
-                            </span><span class="mtext">Contacts</span>
+                            </span><span class="mtext">Kontak</span>
                             {{-- <i class="icon-copy bi bi-chat-right-dots"></i> --}}
                         </a>
                     </li>
@@ -193,7 +193,7 @@
                         <a href="{{ route('admin.locations') }}"
                             class="dropdown-toggle no-arrow {{ request()->routeIs('admin.locations') ? 'active' : '' }}">
                             <span class="micon bi bi-map"></span>
-                            <span class="mtext">Locations</span>
+                            <span class="mtext">Lokasi</span>
                             {{-- <i class="icon-copy bi bi-map"></i> --}}
                         </a>
                     </li>

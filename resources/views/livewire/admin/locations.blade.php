@@ -5,7 +5,7 @@
         <div class="col-12">
             <div class="pd-20 card-box mb-30">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="h4 text-yellow">All Location</h4>
+                    <h4 class="h4 text-yellow">Semua Lokasi</h4>
                     <button class="btn btn-success btn-sm" wire:click="addLocation()">+ Add</button>
                 </div>
 
@@ -14,10 +14,10 @@
                         <thead class="bg-secondary text-white">
                             <tr>
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Address</th>
-                                <th>Maps URL</th>
-                                <th>Embed</th>
+                                <th>Nama</th>
+                                <th>Alamat</th>
+                                <th>Link Maps</th>
+                                <th>Embed Maps</th>
                                 <th class="text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -30,21 +30,25 @@
                                     <td>{{ $item->address }}</td>
 
                                     {{-- Maps URL dipotong biar tidak panjang --}}
-                                    <td style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    <td
+                                        style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                         <a href="{{ $item->maps_url }}" target="_blank">Open Map</a>
                                     </td>
 
                                     {{-- Maps Embed juga dipotong --}}
-                                    <td style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    <td
+                                        style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                         {{ Str::limit($item->maps_embed, 25) }}
                                     </td>
 
                                     <td class="text-center">
-                                        <a href="javascript:;" wire:click="editLocation({{ $item->id }})" class="text-primary mx-2">
+                                        <a href="javascript:;" wire:click="editLocation({{ $item->id }})"
+                                            class="text-primary mx-2">
                                             <i class="dw dw-edit2"></i>
                                         </a>
 
-                                        <a href="javascript:;" wire:click="deleteLocation({{ $item->id }})" class="text-danger mx-2">
+                                        <a href="javascript:;" wire:click="deleteLocation({{ $item->id }})"
+                                            class="text-danger mx-2">
                                             <i class="dw dw-delete-3"></i>
                                         </a>
                                     </td>
@@ -69,7 +73,7 @@
 
         <div class="modal-dialog modal-dialog-centered">
             <form class="modal-content"
-                  wire:submit.prevent="{{ $isUpdateLocationMode ? 'updateLocation' : 'createLocation' }}">
+                wire:submit.prevent="{{ $isUpdateLocationMode ? 'updateLocation' : 'createLocation' }}">
 
                 <div class="modal-header">
                     <h4 class="modal-title">
@@ -86,32 +90,40 @@
                     {{-- Name --}}
                     <div class="form-group">
                         <label>Location Name</label>
-                        <input type="text" class="form-control" wire:model="location_name" placeholder="Enter Location Name">
-                        @error('location_name') <span class="text-danger">{{ $message }}</span> @enderror
+                        <input type="text" class="form-control" wire:model="location_name"
+                            placeholder="Enter Location Name">
+                        @error('location_name')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     {{-- Address --}}
                     <div class="form-group">
                         <label>Location Address</label>
-                        <input type="text" class="form-control" wire:model="location_address" placeholder="Enter Location Address">
-                        @error('location_address') <span class="text-danger">{{ $message }}</span> @enderror
+                        <input type="text" class="form-control" wire:model="location_address"
+                            placeholder="Enter Location Address">
+                        @error('location_address')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     {{-- Maps URL --}}
                     <div class="form-group">
                         <label>Location Maps URL</label>
-                        <input type="text" class="form-control" wire:model="location_maps_url" placeholder="Enter Google Maps URL">
-                        @error('location_maps_url') <span class="text-danger">{{ $message }}</span> @enderror
+                        <input type="text" class="form-control" wire:model="location_maps_url"
+                            placeholder="Enter Google Maps URL">
+                        @error('location_maps_url')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     {{-- Embed --}}
                     <div class="form-group">
                         <label>Location Maps Embed</label>
-                        <textarea class="form-control"
-                                  wire:model="location_maps_embed"
-                                  rows="3"
-                                  placeholder="Paste embed iframe link"></textarea>
-                        @error('location_maps_embed') <span class="text-danger">{{ $message }}</span> @enderror
+                        <textarea class="form-control" wire:model="location_maps_embed" rows="3" placeholder="Paste embed iframe link"></textarea>
+                        @error('location_maps_embed')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
 
                 </div>

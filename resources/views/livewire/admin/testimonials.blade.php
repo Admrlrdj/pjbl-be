@@ -5,7 +5,7 @@
             <div class="pd-20 card-box mb-30">
                 <div class="clearfix">
                     <div class="pull-left">
-                        <h4 class="h4 text-yellow">All Testimonials</h4>
+                        <h4 class="h4 text-yellow">Semua Testimoni</h4>
                     </div>
                     <div class="pull-right">
                         <a href="javascript:;" wire:click="addTestimonial()" class="btn btn-success btn-sm">+</a>
@@ -15,11 +15,11 @@
                     <table class="table table-borderless table-striped table-sm">
                         <thead class="bg-secondary text-white">
                             <th>ID</th>
-                            <th>Name</th>
+                            <th>Nama</th>
                             <th>Rating</th>
-                            <th>Comment</th>
-                            <th>Image</th>
-                            <th>Action</th>
+                            <th>Komen</th>
+                            <th>Gambar</th>
+                            <th>Aksi</th>
                         </thead>
                         <tbody id="sortable_categories">
                             @forelse ($testimonials as $item)
@@ -42,12 +42,10 @@
                                                 class="text-danger mx-2">
                                                 <i class="dw dw-delete-3"></i>
                                             </a>
-                                            <button 
-    wire:click="toggleShowOnHome({{ $item->id }})"
-    class="btn btn-sm {{ $item->show_on_home ? 'btn-success' : 'btn-secondary' }}"
->
-    {{ $item->show_on_home ? 'Shown on Home' : 'Hide on Home' }}
-</button>
+                                            <button wire:click="toggleShowOnHome({{ $item->id }})"
+                                                class="btn btn-sm {{ $item->show_on_home ? 'btn-success' : 'btn-secondary' }}">
+                                                {{ $item->show_on_home ? 'Shown on Home' : 'Hide on Home' }}
+                                            </button>
 
                                         </div>
                                     </td>
@@ -83,36 +81,36 @@
                         <input type="hidden" wire:model="testimonial_id">
                     @endif
                     <div class="form-group">
-                        <label for="">Name</label>
+                        <label for="">Nama</label>
                         <input type="text" class="form-control" wire:model="testimonial_name"
                             placeholder="Enter Name">
                         @error('testimonial_name')
                             <span class="text-danger ml-1">{{ $message }}</span>
                         @enderror
                     </div>
-    
-                   <div class="form-group">
-    <label for="">Rating</label>
-    <select class="form-control" wire:model="testimonial_rating">
-        <option value="">Pilih Rating</option>
-        @foreach(range(1, 5) as $rating)
-            <option value="{{ $rating }}">{{ $rating }}</option>
-        @endforeach
-    </select>
-    
-    @error('testimonial_rating')
-        <span class="text-danger ml-1">{{ $message }}</span>
-    @enderror
-</div>
+
                     <div class="form-group">
-                        <label for="">Comment</label>
+                        <label for="">Rating</label>
+                        <select class="form-control" wire:model="testimonial_rating">
+                            <option value="">Pilih Rating</option>
+                            @foreach (range(1, 5) as $rating)
+                                <option value="{{ $rating }}">{{ $rating }}</option>
+                            @endforeach
+                        </select>
+
+                        @error('testimonial_rating')
+                            <span class="text-danger ml-1">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="">Komen</label>
                         <textarea class="form-control" wire:model="testimonial_comment" placeholder="Enter Comment" rows="3"></textarea>
                         @error('testimonial_comment')
                             <span class="text-danger ml-1">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">Image</label>
+                        <label for="">Gambar</label>
                         <input type="file" class="form-control" wire:model="image">
                         @error('image')
                             <span class="text-danger ml-1">{{ $message }}</span>

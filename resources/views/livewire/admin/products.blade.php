@@ -5,7 +5,7 @@
             <div class="pd-20 card-box mb-30">
                 <div class="clearfix">
                     <div class="pull-left">
-                        <h4 class="h4 text-yellow">All Products</h4>
+                        <h4 class="h4 text-yellow">Semua Produk</h4>
                     </div>
                     <div class="pull-right">
                         <a href="javascript:;" wire:click="addProduct()" class="btn btn-success btn-sm">+</a>
@@ -15,13 +15,13 @@
                     <table class="table table-borderless table-striped table-sm">
                         <thead class="bg-secondary text-white">
                             <th>ID</th>
-                            <th>Product Name</th>
-                            <th>Product Size</th>
-                            <th>Price</th>
-                            <th>Category</th>
-                            <th>Description</th>
-                            <th>Image</th>
-                            <th>Action</th>
+                            <th>Nama Produk</th>
+                            <th>Ukuran Produk</th>
+                            <th>Harga</th>
+                            <th>Kategori</th>
+                            <th>Deskripsi</th>
+                            <th>Gambar</th>
+                            <th>Aksi</th>
                             <th>Best Seller</th>
                         </thead>
                         <tbody id="sortable_categories">
@@ -50,22 +50,21 @@
                                         </div>
                                     </td>
                                     <td>
-                                           <div class="mt-4">
-    <label class="flex items-center gap-2">
-      <input type="checkbox"
-       {{ $item->is_best_seller ? 'checked' : '' }}
-       wire:change="toggleBestSeller({{ $item->id }}, $event.target.checked)">
+                                        <div class="mt-4">
+                                            <label class="flex items-center gap-2">
+                                                <input type="checkbox" {{ $item->is_best_seller ? 'checked' : '' }}
+                                                    wire:change="toggleBestSeller({{ $item->id }}, $event.target.checked)">
 
 
-        <span>Jadikan Best Seller</span>
-    </label>
-</div>
+                                                <span>Jadikan Best Seller</span>
+                                            </label>
+                                        </div>
 
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="8" class="text-center">
+                                    <td colspan="9" class="text-center">
                                         No Products Found.
                                     </td>
                                 </tr>
@@ -94,7 +93,7 @@
                         <input type="hidden" wire:model="product_id">
                     @endif
                     <div class="form-group">
-                        <label for="">Product Name</label>
+                        <label for="">Nama Produk</label>
                         <input type="text" class="form-control" wire:model="product_name"
                             placeholder="Enter Product Name">
                         @error('product_name')
@@ -102,7 +101,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">Product Size</label>
+                        <label for="">Ukuran Produk</label>
                         <input type="text" class="form-control" wire:model="product_size"
                             placeholder="Enter Product Size (gr, pcs, etc.)">
                         @error('product_size')
@@ -110,7 +109,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">Product Price</label>
+                        <label for="">Harga Produk</label>
                         <input type="number" class="form-control" wire:model="product_price"
                             placeholder="Enter Product Price">
                         @error('product_price')
@@ -118,7 +117,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">Product Category</label>
+                        <label for="">Kateogori Produk</label>
                         <select class="form-control" wire:model="product_category_id">
                             <option value="">Pilih Kategori</option>
                             @foreach ($categories as $cat)
@@ -130,14 +129,14 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">Product Description</label>
+                        <label for="">Deskripsi Produk</label>
                         <textarea class="form-control" wire:model="product_description" placeholder="Enter Product Description" rows="3"></textarea>
                         @error('product_description')
                             <span class="text-danger ml-1">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">Product Image</label>
+                        <label for="">Gambar Produk</label>
                         <input type="file" class="form-control" wire:model="image">
                         @error('image')
                             <span class="text-danger ml-1">{{ $message }}</span>

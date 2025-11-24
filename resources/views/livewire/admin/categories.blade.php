@@ -5,7 +5,7 @@
             <div class="pd-20 card-box mb-30">
                 <div class="clearfix">
                     <div class="pull-left">
-                        <h4 class="h4 text-yellow">All Category</h4>
+                        <h4 class="h4 text-yellow">Semua Kategori</h4>
                     </div>
                     <div class="pull-right">
                         <a href="javascript:;" wire:click="addCategory()" class="btn btn-success btn-sm">+</a>
@@ -69,7 +69,7 @@
                         <input type="hidden" wire:model="category_id">
                     @endif
                     <div class="form-group">
-                        <label for="">Category Name</label>
+                        <label for="">Nama Kategori</label>
                         <input type="text" class="form-control" wire:model="category_name"
                             placeholder="Enter Category Name">
                         @error('category_name')
