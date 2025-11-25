@@ -175,8 +175,8 @@ class Products extends Component
         $product->description = $this->product_description;
         $product->image = $filename;
         $product->slug = null;
-        $updated = $product->save();
         $product->is_best_seller = $this->is_best_seller;
+        $updated = $product->save();
 
 
         if ($updated) {
@@ -246,7 +246,6 @@ class Products extends Component
             ]);
         }
     }
-
 
 
     public function hideProductModalForm()

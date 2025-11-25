@@ -118,7 +118,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">Kateogori Produk</label>
+                        <label for="">Kategori Produk</label>
                         <select class="form-control" wire:model="product_category_id">
                             <option value="">Pilih Kategori</option>
                             @foreach ($categories as $cat)
