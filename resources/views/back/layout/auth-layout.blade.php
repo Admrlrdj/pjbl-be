@@ -12,6 +12,10 @@
     <link rel="stylesheet" type="text/css" href="/back/vendors/styles/core.css" />
     <link rel="stylesheet" type="text/css" href="/back/vendors/styles/icon-font.min.css" />
     <link rel="stylesheet" type="text/css" href="/back/vendors/styles/style.css" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     @stack('stylesheets')
     <style>
         html,
@@ -29,7 +33,7 @@
 
         .page-left {
             flex: 1;
-            background: #FFED8A;
+            background: #FFD700;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -38,7 +42,7 @@
         }
 
         .page-left img {
-            max-width: 260px;
+            max-width: 400px;
             width: 100%;
         }
 
@@ -77,7 +81,7 @@
 <body class="login-page">
     <div class="page-flex">
         <div class="page-left">
-            <img src="/images/hero-logo.png" alt="Logo Danggedang" />
+            <img src="/images/login.png" class=alt="Logo Danggedang" />
             <h2>Selamat Datang, Admin</h2>
         </div>
         <div class="page-right">

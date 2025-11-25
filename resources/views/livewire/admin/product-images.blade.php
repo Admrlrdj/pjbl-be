@@ -31,7 +31,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <button wire:click="uploadImages" class="btn btn-primary w-100" wire:loading.attr="disabled"
+                            <button wire:click="uploadImages" class="btn btn-warning w-100" wire:loading.attr="disabled"
                                 wire:target="uploadImages">
                                 <span wire:loading.remove wire:target="uploadImages">
                                     <i class="fas fa-upload"></i> Upload Images
