@@ -51,6 +51,7 @@ class Categories extends Component
     public function editCategory($id)
     {
         $category = Category::findOrFail($id);
+        var_dump($category);
         $this->category_id = $category->id;
         $this->category_name = $category->name;
         $this->isUpdateCategoryMode = true;

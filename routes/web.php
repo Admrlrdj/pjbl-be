@@ -13,7 +13,7 @@ use App\Http\Controllers\ContactController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Dynamic Pages
-Route::get('/our-story', [HomeController::class, 'ourStory'])->name('our-story'); 
+Route::get('/our-story', [HomeController::class, 'ourStory'])->name('our-story');
 Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/contact/submit', [ContactController::class, 'store'])->name('contact.store');
@@ -33,7 +33,7 @@ Route::view('/example-auth', 'example-auth');
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware(['guest', 'preventBackHistory'])->group(function () {
         Route::controller(AuthController::class)->group(function () {
-            Route::get('/login', 'loginForm')->name('login'); 
+            Route::get('/login', 'loginForm')->name('login');
             Route::post('/login', 'loginHandler')->name('login_handler');
             Route::get('/forgot-password', 'forgotForm')->name('forgot');
         });
