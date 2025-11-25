@@ -25,7 +25,7 @@
     </p>
     <div class="flex flex-col gap-y-2 items-start">
       <p class="text-[#2c2c2c] font-semibold ml-2">Ingin Menjadi Mitra/Reseller?</p>
-      <a href="#" class="px-6 py-3 bg-white rounded-xl border-[3px] border-[#ffd700] text-sm font-bold hover:bg-gray-50 transition">
+      <a href="https://wa.me/6281936810305?text=Halo, saya ingin menjadi mitra/reseller" class="px-6 py-3 bg-white rounded-xl border-[3px] border-[#ffd700] text-sm font-bold hover:bg-gray-50 transition">
         Gabung Sekarang!
       </a>
     </div>
@@ -50,15 +50,15 @@
             <img src="/images/Gradient.png" class="marquee-img" />
             <img src="/images/Gradient2.png" class="marquee-img" />
             <img src="/images/Gradient3.png" class="marquee-img" />
-            <img src="/images/Gradient.png" class="marquee-img" />
+            <img src="/images/psng.png" class="marquee-img" />
 
             <!-- Loop 2 (duplicate) -->
-            <img src="/images/Gradient.png" class="marquee-img" />
             <img src="/images/Gradient2.png" class="marquee-img" />
             <img src="/images/Gradient3.png" class="marquee-img" />
-            <img src="/images/Gradient.png" class="marquee-img" />
+            <img src="/images/psng.png" class="marquee-img" />
+            <img src="/images/matcha.png" class="marquee-img" />
         </div>
     </div>
-</div>
+</div>>
 </section>
 @endsection

@@ -51,13 +51,13 @@
             <img src="/images/Gradient.png" class="marquee-img" />
             <img src="/images/Gradient2.png" class="marquee-img" />
             <img src="/images/Gradient3.png" class="marquee-img" />
-            <img src="/images/Gradient.png" class="marquee-img" />
+            <img src="/images/psng.png" class="marquee-img" />
 
             <!-- Loop 2 (duplicate) -->
-            <img src="/images/Gradient.png" class="marquee-img" />
             <img src="/images/Gradient2.png" class="marquee-img" />
             <img src="/images/Gradient3.png" class="marquee-img" />
-            <img src="/images/Gradient.png" class="marquee-img" />
+            <img src="/images/psng.png" class="marquee-img" />
+            <img src="/images/matcha.png" class="marquee-img" />
         </div>
     </div>
 </div>
