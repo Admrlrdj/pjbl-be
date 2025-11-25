@@ -19,12 +19,14 @@ class HomeController extends Controller
         [
             'value' => $testimoniCount . '+', 
             'label' => 'Pelanggan Puas', 
-            'modal_target' => null 
+            'modal_target' => null,
+            'scroll_to' => 'testimonials' 
         ],
         [
             'value' => Product::count() . '+', 
             'label' => 'Varian Produk', 
-            'modal_target' => null  
+            'modal_target' => null,
+            'scroll_to' => 'products'
         ],
         [
             'value' => '✓', 
