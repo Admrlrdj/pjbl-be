@@ -248,6 +248,7 @@ class Products extends Component
     }
 
 
+
     public function hideProductModalForm()
     {
         $this->dispatch('hideProductModalForm');
