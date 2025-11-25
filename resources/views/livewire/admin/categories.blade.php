@@ -8,7 +8,8 @@
                         <h4 class="h4 text-yellow">Semua Kategori</h4>
                     </div>
                     <div class="pull-right">
-                        <a href="javascript:;" wire:click="addCategory()" class="btn btn-success btn-sm">+</a>
+                        <a href="javascript:;" wire:click="addCategory()"
+                            class="py-2 px-2.5 bg-green-300 text-green-600 rounded-md">+</a>
                     </div>
                 </div>
                 <div class="table-responsive mt-4">
@@ -81,7 +82,7 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         Close
                     </button>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-warning">
                         {{ $isUpdateCategoryMode ? 'Save changes' : 'Create' }}
                     </button>
                 </div>

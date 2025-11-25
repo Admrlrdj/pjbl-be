@@ -63,7 +63,7 @@
                 cancelButtonText: 'No, cancel!',
                 confirmButtonText: 'Yes, delete it!',
                 cancelButtonColor: '#D33',
-                confirmButtonColor: '#3085D6',
+                confirmButtonColor: '#FFD700',
                 width: 320,
                 allowOutsideClick: false,
                 customClass: {

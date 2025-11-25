@@ -122,7 +122,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                                            <button type="submit" class="btn btn-warning">Save Changes</button>
                                         </div>
                                     </form>
                                 </div>
@@ -165,7 +165,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Update Password</button>
+                                        <button type="submit" class="btn btn-warning">Update Password</button>
                                     </form>
                                 </div>
                             </div>

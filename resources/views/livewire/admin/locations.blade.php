@@ -6,7 +6,8 @@
             <div class="pd-20 card-box mb-30">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="h4 text-yellow">Semua Lokasi</h4>
-                    <button class="btn btn-success btn-sm" wire:click="addLocation()">+ Add</button>
+                    <button class="py-2 px-2.5 bg-green-300 text-green-600 rounded-md" wire:click="addLocation()">+
+                        Add</button>
                 </div>
 
                 <div class="table-responsive">
@@ -130,7 +131,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-warning">
                         {{ $isUpdateLocationMode ? 'Save Changes' : 'Create' }}
                     </button>
                 </div>

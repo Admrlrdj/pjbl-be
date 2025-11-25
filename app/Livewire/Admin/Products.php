@@ -114,10 +114,10 @@ class Products extends Component
             $this->product_category_name = $product->category->name;
             $this->product_description = $product->description;
             $this->is_best_seller = $product->is_best_seller;
-            $this->old_image = $product->image; // <-- PERBAIKAN: Simpan nama file lama
-            $this->image = null; // <-- PERBAIKAN: Pastikan input file baru kosong
+            $this->old_image = $product->image;
+            $this->image = null;
             $this->isUpdateProductMode = true;
-            $this->resetErrorBag(); // <-- Panggil resetErrorBag di sini
+            $this->resetErrorBag();
             $this->showProductModalForm();
         } else {
             $this->dispatch('showToastr', ['type' => 'error', 'message' => 'Product not found.']);
@@ -128,7 +128,7 @@ class Products extends Component
     {
         $product = Product::findOrFail($this->product_id);
         $path = public_path('images/products/');
-        $filename = $product->image; // Default ke nama file lama
+        $filename = $product->image;
         $this->validate([
             'product_name' => 'required|unique:products,name,' . $this->product_id,
             'product_size' => 'required',
@@ -165,7 +165,7 @@ class Products extends Component
             //     File::delete($path . $product->image);
             // }
 
-            $filename = $new_filename; // Update nama file untuk disimpan di DB
+            $filename = $new_filename;
         }
 
         $product->name = $this->product_name;
@@ -173,7 +173,7 @@ class Products extends Component
         $product->price = $this->product_price;
         $product->category_id = $this->product_category_id;
         $product->description = $this->product_description;
-        $product->image = $filename; // <-- Simpan nama file (lama atau baru)
+        $product->image = $filename;
         $product->slug = null;
         $updated = $product->save();
         $product->is_best_seller = $this->is_best_seller;
@@ -213,44 +213,39 @@ class Products extends Component
     }
 
     public function toggleBestSeller($productId, $status)
-{
-    // Pastikan status adalah boolean
-    $status = filter_var($status, FILTER_VALIDATE_BOOLEAN);
+    {
+        $status = filter_var($status, FILTER_VALIDATE_BOOLEAN);
 
-    // 1. Cek Batasan (Hanya jika sedang mencoba mengaktifkan / TRUE)
-    if ($status) {
-        $currentBestSellerCount = Product::where('is_best_seller', true)->count();
-        
-        if ($currentBestSellerCount >= 2) {
+        if ($status) {
+            $currentBestSellerCount = Product::where('is_best_seller', true)->count();
+
+            if ($currentBestSellerCount >= 2) {
+                $this->dispatch('alert', [
+                    'type' => 'error',
+                    'message' => "Maksimal hanya 2 produk Best Seller yang diizinkan."
+                ]);
+
+                $this->dispatch('refresh-component');
+                return;
+            }
+        }
+
+        $product = Product::find($productId);
+
+        if ($product) {
+            $product->update(['is_best_seller' => $status]);
+
+            $this->dispatch('showToastr', [
+                'type' => 'success',
+                'message' => $status ? 'Produk dijadikan Best Seller.' : 'Status Best Seller dicabut.'
+            ]);
+        } else {
             $this->dispatch('alert', [
                 'type' => 'error',
-                'message' => "Maksimal hanya 2 produk Best Seller yang diizinkan."
+                'message' => "Produk tidak ditemukan."
             ]);
-            
-            // PENTING: Kembalikan checkbox ke posisi 'unchecked' di sisi user
-            // Tanpa ini, tombol visual akan terlihat 'aktif' padahal di database gagal.
-            $this->dispatch('refresh-component'); // Atau $this->render();
-            return; 
         }
     }
-
-    // 2. Eksekusi Update
-    $product = Product::find($productId);
-
-    if ($product) {
-        $product->update(['is_best_seller' => $status]);
-
-        $this->dispatch('showToastr', [
-            'type' => 'success',
-            'message' => $status ? 'Produk dijadikan Best Seller.' : 'Status Best Seller dicabut.'
-        ]);
-    } else {
-         $this->dispatch('alert', [
-            'type' => 'error',
-            'message' => "Produk tidak ditemukan."
-        ]);
-    }
-}
 
 
 

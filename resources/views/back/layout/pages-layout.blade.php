@@ -11,6 +11,10 @@
     <link rel="icon" type="image/png" sizes="16x16"
         href="/images/site/{{ isset(settings()->site_favicon) ? settings()->site_favicon : '' }}" />
 
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
@@ -38,6 +42,11 @@
 
         .left-side-bar .menu-block .sidebar-menu ul li a:hover .micon,
         .left-side-bar .menu-block .sidebar-menu ul li a.active .micon {
+            color: #ffffff !important;
+        }
+
+        .swal2-confirm {
+            background-color: #FFD700 !important;
             color: #ffffff !important;
         }
     </style>

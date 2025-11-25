@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="forgot-password">
+                    <div class="forgot-password underline">
                         <a href="forgot-password.html">Forgot Password</a>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="input-group mb-0">
-                        <input class="btn btn-warning btn-lg btn-block" type="submit" value="Login">
+                        <input class="bg-[#FFD700] w-full py-2.5 rounded-md" type="submit" value="Login">
                         {{-- <a class="btn btn-primary btn-lg btn-block" href="index.html">Sign In</a> --}}
                     </div>
                 </div>

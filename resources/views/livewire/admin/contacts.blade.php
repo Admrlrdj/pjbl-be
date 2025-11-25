@@ -8,7 +8,7 @@
                         <h4 class="h4 text-yellow">Semua Kontak</h4>
                     </div>
                     <div class="pull-right">
-                        {{-- <a href="javascript:;" wire:click="addCategory()" class="btn btn-success btn-sm">+</a> --}}
+                        {{-- <a href="javascript:;" wire:click="addCategory()" class="py-2 px-2.5 bg-green-300 text-green-600 rounded-md">+</a> --}}
                     </div>
                 </div>
                 <div class="table-responsive mt-4">

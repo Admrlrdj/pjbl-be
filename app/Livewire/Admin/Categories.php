@@ -4,7 +4,7 @@ namespace App\Livewire\Admin;
 
 use App\Models\Category;
 use Livewire\Component;
-use Illuminate\Support\Str; // Tambahkan ini untuk generate slug
+use Illuminate\Support\Str;
 
 class Categories extends Component
 {
@@ -21,7 +21,7 @@ class Categories extends Component
         $this->category_id = null;
         $this->category_name = null;
         $this->isUpdateCategoryMode = false;
-        $this->resetErrorBag(); // Reset error validation jika ada sisa sebelumnya
+        $this->resetErrorBag();
         $this->showCategoryModalForm();
     }
 
@@ -36,9 +36,8 @@ class Categories extends Component
 
         $category = new Category();
         $category->name = $this->category_name;
-        // Tambahkan slug otomatis
-        $category->slug = Str::slug($this->category_name); 
-        
+        $category->slug = Str::slug($this->category_name);
+
         $saved = $category->save();
 
         if ($saved) {
@@ -51,7 +50,7 @@ class Categories extends Component
 
     public function editCategory($id)
     {
-        $category = Category::findOrFail($id); // Gunakan findOrFail agar lebih aman
+        $category = Category::findOrFail($id);
         $this->category_id = $category->id;
         $this->category_name = $category->name;
         $this->isUpdateCategoryMode = true;
@@ -71,12 +70,11 @@ class Categories extends Component
         ]);
 
         $category->name = $this->category_name;
-        
-        // Update slug jika nama berubah
-        if($category->isDirty('name')) {
-             $category->slug = Str::slug($this->category_name);
+
+        if ($category->isDirty('name')) {
+            $category->slug = Str::slug($this->category_name);
         }
-        
+
         $updated = $category->save();
 
         if ($updated) {
@@ -94,8 +92,6 @@ class Categories extends Component
             $new_position = $position[1];
             Category::where('id', $index)->update(['ordering' => $new_position]);
         }
-        // Pindahkan toastr KELUAR dari loop. 
-        // Agar user tidak dibombardir notifikasi jika memindahkan banyak item sekaligus.
         $this->dispatch('showToastr', ['type' => 'success', 'message' => 'Category ordering updated successfully.']);
     }
 
@@ -108,10 +104,9 @@ class Categories extends Component
     {
         $category = Category::withCount('products')->findOrFail($id);
 
-        // CEGAH MENGHAPUS KATEGORI YANG MASIH PUNYA PRODUK
         if ($category->products_count > 0) {
             $this->dispatch('showToastr', [
-                'type' => 'error', 
+                'type' => 'error',
                 'message' => 'Cannot delete category because it contains ' . $category->products_count . ' products.'
             ]);
             return;
@@ -142,7 +137,6 @@ class Categories extends Component
     public function render()
     {
         return view('livewire.admin.categories', [
-            // Tambahkan withCount('products') agar kita bisa menampilkan jumlah produk di tabel list (opsional tapi berguna)
             'categories' => Category::withCount('products')->orderBy('ordering', 'asc')->get(),
         ]);
     }
