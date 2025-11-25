@@ -26,20 +26,34 @@
                 Jangan Ragu, dijamin ketagihan! temukan cemilan, makanan, dan minuman dengan rasa yang autentik yang selalu bikin harimu bersemangat!
             </p>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
     @foreach($stats as $stat)
+        {{-- Jika item memiliki modal --}}
         @if($stat['modal_target'])
             <button onclick="toggleModal('{{ $stat['modal_target'] }}')"
-               class="w-full border-[3px] border-[#FFD700] rounded-2xl flex flex-col items-center justify-center py-4 px-2 shadow-sm hover:shadow-md hover:bg-yellow-50 transition-all bg-white cursor-pointer group">
+                class="w-full border-[3px] border-[#FFD700] rounded-2xl flex flex-col items-center justify-center py-4 px-2 shadow-sm hover:shadow-md hover:scale-[1.02] transition-transform duration-300 cursor-pointer group">
                 <h3 class="text-3xl md:text-4xl text-[#FFD700] font-bold group-hover:scale-110 transition-transform">
                     {{ $stat['value'] }}
                 </h3>
                 <p class="text-sm md:text-base font-semibold text-gray-700 mt-1">
-                    {{ $stat['label'] }} <span class="text-xs text-blue-500 block">(Lihat Sertifikat)</span>
+                    {{ $stat['label'] }} <span class="text-xs text-zinc-800 underline block">Lihat Sertifikat</span>
                 </p>
             </button>
+
+        {{-- Jika item digunakan untuk scroll ke section --}}
+        @elseif($stat['scroll_to'])
+            <button onclick="scrollToSection('{{ $stat['scroll_to'] }}')"
+                class="w-full border-[3px] border-[#FFD700] rounded-2xl flex flex-col items-center justify-center py-4 px-2 shadow-sm hover:shadow-md hover:scale-[1.02] transition-transform duration-300 cursor-pointer group bg-white">
+                <h3 class="text-3xl md:text-4xl text-[#FFD700] font-bold group-hover:scale-110 transition-transform">
+                    {{ $stat['value'] }}
+                </h3>
+                <p class="text-sm md:text-base font-semibold text-gray-700 mt-1">
+                    {{ $stat['label'] }}
+                </p>
+            </button>
+
+        {{-- Stat biasa --}}
         @else
-            {{-- Item Statistik Biasa (Div statis) --}}
             <div class="w-full border-[3px] border-[#FFD700] rounded-2xl flex flex-col items-center justify-center py-4 px-2 shadow-sm bg-white">
                 <h3 class="text-3xl md:text-4xl text-[#FFD700] font-bold">
                     {{ $stat['value'] }}
@@ -74,9 +88,9 @@
                         @php
                             // Sesuaikan 'filename' dengan nama file asli di folder public/sertifikat_halal Anda
                             $documents = [
-                                ['label' => 'Sertifikat Halal Utama', 'filename' => 'halaldanggedang.pdf'],
+                                ['label' => 'Sertifikat Halal Keripik', 'filename' => 'halaldanggedang.pdf'],
                                 ['label' => 'Sertifikat Halal Minuman', 'filename' => 'halalminuman.pdf'],
-                                ['label' => 'Sertifikat Halal Keripik', 'filename' => 'halalkeripik.pdf'],
+                                ['label' => 'Sertifikat Halal Basreng', 'filename' => 'halalkeripik.pdf'],
                             ];
                         @endphp
 
@@ -212,7 +226,7 @@
  
 
 <!-- Product Catalog Section -->
-<section class="py-10 bg-white">
+<section class="py-10 bg-white" id="products">
     
     <div class="container mx-auto px-4 md:px-8 max-w-[1240px]">
 
@@ -368,7 +382,7 @@
 <!-- Product Grid -->
 
 <!-- Testimonial Section -->
-<section class="py-20 bg-white">
+<section class="py-20 bg-white" id="testimonials">
     <div class="container mx-auto px-4">
 
         <div class="text-center mb-8">
@@ -760,8 +774,8 @@
                         </div>
                         <div>
                             <h4 class="font-semibold mb-1">Belanja Online</h4>
-                            <a href="https://shopee.com/Danggedang Official" target="_blank" class="text-yellow-300 hover:underline">
-                                Shopee: Danggedang Official
+                            <a href="https://s.shopee.co.id/3qFY5AvD2O" target="_blank" class="text-yellow-300 hover:underline">
+                                Shopee: Nounoufood.id
                             </a>
                         </div>
                     </div>
