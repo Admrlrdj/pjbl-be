@@ -4,7 +4,7 @@
 
     <div class="login-box bg-white box-shadow border-radius-10">
         <div class="login-title">
-            <h2 class="text-center">Login Admin</h2>
+            <h2 class="text-center">Login</h2>
         </div>
         <form action="{{ route('admin.login_handler') }}" method="POST">
 
@@ -31,7 +31,7 @@
                 <span class="text-danger ml-1">{{ $message }}</span>
             @enderror
             <div class="row pb-30">
-                {{-- <div class="col-6">
+                <div class="col-6">
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="customCheck1" />
                         <label class="custom-control-label" for="customCheck1">Remember</label>
@@ -41,7 +41,7 @@
                     <div class="forgot-password">
                         <a href="forgot-password.html">Forgot Password</a>
                     </div>
-                </div> --}}
+                </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">

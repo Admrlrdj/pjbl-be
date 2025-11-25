@@ -1,56 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 
 <head>
-    <!-- Basic Page Info -->
     <meta charset="utf-8" />
     <title>Danggedang - @yield('pageTitle')</title>
-
-    <!-- Site favicon -->
     <link rel="icon" type="image/png" sizes="16x16"
         href="/images/site/{{ isset(settings()->site_favicon) ? settings()->site_favicon : '' }}" />
-
-    <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
-    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet" />
-    <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/back/vendors/styles/core.css" />
     <link rel="stylesheet" type="text/css" href="/back/vendors/styles/icon-font.min.css" />
     <link rel="stylesheet" type="text/css" href="/back/vendors/styles/style.css" />
     @stack('stylesheets')
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #fff;
+        }
+
+        .page-flex {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .page-left {
+            flex: 1;
+            background: #FFED8A;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 10px;
+        }
+
+        .page-left img {
+            max-width: 260px;
+            width: 100%;
+        }
+
+        .page-left h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-top: 32px;
+            color: #2B2B2B;
+        }
+
+        .page-right {
+            flex: 1;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .page-flex {
+                flex-direction: column;
+            }
+
+            .page-left,
+            .page-right {
+                width: 100%;
+                min-height: 220px;
+                padding: 28px 8px;
+            }
+        }
+    </style>
 </head>
 
 <body class="login-page">
-    <div class="login-header box-shadow">
-        <div class="container-fluid d-flex justify-content-between align-items-center">
-            <div class="brand-logo">
-                <a href="{{ route('admin.login') }}">
-                    <img src="/images/site/{{ isset(settings()->site_logo) ? settings()->site_logo : '' }}"
-                        alt="" />
-                </a>
-            </div>
-            {{-- <div class="login-menu">
-                <ul>
-                    <li><a href="register.html">Register</a></li>
-                </ul>
-            </div> --}}
+    <div class="page-flex">
+        <div class="page-left">
+            <img src="/images/hero-logo.png" alt="Logo Danggedang" />
+            <h2>Selamat Datang, Admin</h2>
         </div>
-    </div>
-    <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6 col-lg-7">
-                    {{-- <img src="/back/vendors/images/login-page-img.png" alt="" /> --}}
-                    {{-- Logo Pisang ditambahkan di sini --}}
-                    <img src="/images/hero-logo.png" alt="Logo Danggedang" style="max-width: 100%; height: auto;" />
-                </div>
-                <div class="col-md-6 col-lg-5">
-                    @yield('content')
-                </div>
-            </div>
+        <div class="page-right">
+            @yield('content')
         </div>
     </div>
     <script src="/back/vendors/scripts/core.js"></script>
