@@ -26,9 +26,9 @@ class Category extends Model
         ];
     }
 
+    // agregasi hasMany dengan product
     public function products()
     {
-        // Ini memberitahu Laravel bahwa 1 Category punya banyak Product
         return $this->hasMany(Product::class);
     }
 }

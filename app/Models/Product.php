@@ -35,6 +35,8 @@ class Product extends Model
     {
         return 'Rp ' . number_format($this->price, 0, ',', '.');
     }
+
+    // agregasi belongsTo dengan category
     public function category()
     {
 
