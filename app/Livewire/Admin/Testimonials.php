@@ -15,7 +15,6 @@ class Testimonials extends Component
         $testimonial_name,
         $testimonial_rating,
         $testimonial_comment,
-        $product_id,
         $avatar,
         $olf_avatar,
         $image,
@@ -28,7 +27,6 @@ class Testimonials extends Component
 
     public function addTestimonial()
     {
-        // dd('add product');
         $this->testimonial_id = null;
         $this->testimonial_name = null;
         $this->testimonial_rating = null;
@@ -64,7 +62,7 @@ class Testimonials extends Component
         $testimonial->name = $this->testimonial_name;
         $testimonial->rating = $this->testimonial_rating;
         $testimonial->comment = $this->testimonial_comment;
-        
+
 
         if ($this->image) {
             $path = public_path('images/testimonials/');
@@ -79,7 +77,7 @@ class Testimonials extends Component
             File::copy($tempPath, $path . $filename);
 
             $testimonial->image = $filename;
-        }else {
+        } else {
             $testimonial->image = 'default-avatar.png';
         }
         $saved = $testimonial->save();
@@ -111,16 +109,16 @@ class Testimonials extends Component
         }
     }
     public function toggleShowOnHome($id)
-{
-    $testimonial = Testimonial::findOrFail($id);
-    $testimonial->show_on_home = !$testimonial->show_on_home;
-    $testimonial->save();
+    {
+        $testimonial = Testimonial::findOrFail($id);
+        $testimonial->show_on_home = !$testimonial->show_on_home;
+        $testimonial->save();
 
-    $this->dispatch('showToastr', [
-        'type' => 'success',
-        'message' => 'Testimonial visibility updated!'
-    ]);
-}
+        $this->dispatch('showToastr', [
+            'type' => 'success',
+            'message' => 'Testimonial visibility updated!'
+        ]);
+    }
 
 
     public function updateTestimonial()
@@ -133,7 +131,7 @@ class Testimonials extends Component
             'testimonial_name' => 'required|unique:testimonials,name,' . $this->testimonial_id,
             'testimonial_rating' => 'required|integer|min:1|max:5',
             'testimonial_comment' => 'required',
-           'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ], [
             'testimonial_name.required' => 'Name is required',
             'testimonials_name.unique' => 'Name already exists',
@@ -158,10 +156,6 @@ class Testimonials extends Component
 
             $tempPath = $file->getRealPath();
             File::copy($tempPath, $path . $new_filename);
-
-            // if ($product->image && File::exists($path . $product->image)) {
-            //     File::delete($path . $product->image);
-            // }
 
             $filename = $new_filename;
         }
@@ -217,11 +211,5 @@ class Testimonials extends Component
         return view('livewire.admin.testimonials', [
             'testimonials' => Testimonial::orderBy('id', 'asc')->get(),
         ]);
-        $testimonials = Testimonial::orderBy('id', 'asc')
-        ->take(3)
-        ->get();
-        return view('home', compact('testimonials'));
     }
-
-    
 }
